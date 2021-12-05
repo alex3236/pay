@@ -72,6 +72,14 @@
         margin: 0 4px 3px 4px;
     }
 
+    .external {
+        display: none;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        margin: 0 4px 3px 4px;
+    }
+
     .btn {
         appearance: none;
         background-color: #2ea44f;
@@ -152,13 +160,14 @@
 
 
 <body>
-    <!-- 万能收款码展示区域 -->
-    <div class="code-footer">
+    <!-- 万能收款码&外部链接 -->
+    <div class="external" id="external-links">
         <a href="works.html"><button class="btn">我的作品</button></a>
         <a href="https://space.bilibili.com/275212628"><button class="btn">我的 Bilibili</button></a>
         <a href="https://github.com/alex3236"><button class="btn">我的 Github</button></a>
     </div>
     <div class="code-item" id="code-all">
+        <div class="code-item"></div>
         <div class="code-title"></div>
         <div class="code-area">
             <img id="page-url" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=">
@@ -195,14 +204,15 @@
         /* 微信 */ 
         document.getElementById("wechat-url").src = QRCode.generatePNG(setting.wechatUrl, { margin: 0 });
         document.getElementById("code-wechat").style.display = "block";
-    } else if(navigator.userAgent.match(/QQ\//i)) {
-        /* QQ */ 
-        document.getElementById("qq-url").src = QRCode.generatePNG(setting.qqUrl, { margin: 0 });
-        document.getElementById("code-qq").style.display = "block";
+    // } else if(navigator.userAgent.match(/QQ\//i)) {
+    //     /* QQ */ 
+    //     document.getElementById("qq-url").src = QRCode.generatePNG(setting.qqUrl, { margin: 0 });
+    //     document.getElementById("code-qq").style.display = "block";
     } else {
         /* 其它，显示“万能码” */ 
         document.getElementById("page-url").src = QRCode.generatePNG(window.location.href, { margin: 0 });
         document.getElementById("code-all").style.display = "block";
+        document.getElementById("external-links").style.display = "block";
     }
     </script>
 
