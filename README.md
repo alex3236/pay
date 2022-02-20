@@ -6,9 +6,7 @@
 
 ### 效果展示
 
-以下为实时截图，有一定延迟
-
-![](https://s0.wp.com/mshots/v1/https://al-pay.netlify.app/?w=600&h=400)
+![image](https://user-images.githubusercontent.com/45303195/154835925-7bdd539b-550c-4734-bdfa-9aa64744e5e5.png)
 
 ### 使用方法
 
