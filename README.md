@@ -27,7 +27,7 @@
 <title>(～￣▽￣)～</title>
 <script>
     const settings = {
-        avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. alex3236)
+        avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
         name: "Alex3236", // 头像下的昵称
         sign: "请选择支付方式" // 个性签名 (提示文字)
     }
