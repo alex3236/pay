@@ -11,7 +11,7 @@ function isGithub(username) {
 
 window.onload = function () {
     if (isQQ(settings.avatar)) {
-        document.getElementById("avatar").src = "http://q1.qlogo.cn/g?b=qq&nk=" + settings.avatar + "&s=100";
+        document.getElementById("avatar").src = "http://q1.qlogo.cn/g?b=qq&nk=" + settings.avatar + "&s=640";
     } else if (isGithub(settings.avatar)) {
         document.getElementById("avatar").src = "https://avatars.githubusercontent.com/" + settings.avatar.substr(1) + "?v=3";
     } else {
