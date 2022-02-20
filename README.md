@@ -12,11 +12,11 @@
 
 ### 使用方法
 
-1. 从 Releases 下载源码
+1. 从 Releases 下载 `index.html`（单文件，无需其他）
 2. 修改配置
 3. 部署
 
-要在 ug'i 务必从 Releases 下载！
+**要在生产环境运行，请务必从 Releases 下载！不要直接下载源码 ZIP！**
 
 ### 配置选项
 

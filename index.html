@@ -1,274 +1,84 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="alex3236">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>Pay</title>
+    <meta name="author" content="Alex3236, and Bootstrap contributors">
 
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Settings: Change these to your links -->
+    <title>(～￣▽￣)～</title>
     <script>
-        /**
-         * 本多合一收款码作者 @megnkun(https://mkblog.cn)，转载请注明！
-         * Github： https://github.com/mengkunsoft/OneQRCode
-         * 
-         * 以下内容请用专门的 Html 编辑器（如 VS Code）进行编辑，切勿直接用记事本编辑，否则可能出现中文乱码！
-         */
-        var setting = {
-            /* 在以下【双引号】中粘贴你的QQ钱包收款链接 */
-            qqUrl: "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=CAEQ19vligoY3K2tjQY%3D_xxx_sign&u=2706992599&n=Alex3236",
-
-            /* 在以下【双引号】中粘贴你的微信收款链接 */
-            wechatUrl: "wxp://f2f0ztGfw9u3WagBbDHikaGEZuDB_d9QsPzjcn1YWu_hzW8",
-
-            /* 在以下【双引号】中粘贴你的支付宝收款链接 */
-            aliUrl: "https://qr.alipay.com/fkx19308fmhdodse4a7vu41?t=1638630319334"
+        const settings = {
+            avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. alex3236)
+            name: "Alex3236", // 头像下的昵称
+            sign: "请选择支付方式" // 个性签名 (提示文字)
+        }
+        const urls = {
+            // 你可以使用草料二维码等二维码识别工具识别二维码，获取其中的链接
+            alipay: "https://qr.alipay.com/fkx19308fmhdodse4a7vu41?t=1638630319334", // 支付宝二维码链接
+            wechat: "wxp://f2f0ztGfw9u3WagBbDHikaGEZuDB_d9QsPzjcn1YWu_hzW8", // 微信二维码链接
+            qq: "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=CAEQ19vligoY3K2tjQY%3D_xxx_sign&u=2706992599&n=Alex3236" // QQ 二维码链接
         }
     </script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: Microsoft yahei;
-        }
-
-        body {
-            background-color: #fff;
-        }
-
-        .code-item {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding-bottom: 1px;
-            display: none;
-            background-color: #5c92ef;
-        }
-
-        .code-title {
-            height: 100px;
-            background-color: #f2f2f2;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 30%;
-        }
-
-        .code-area {
-            text-align: center;
-        }
-
-        .code-area img {
-            margin: 80px auto;
-            width: 60%;
-            min-width: 100px;
-            background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .code-footer {
-            height: 80px;
-            text-align: center;
-            background-color: #fff;
-            color: #666;
-            line-height: 80px;
-            font-size: 20px;
-            margin: 0 4px 3px 4px;
-        }
-
-        .external {
-            display: none;
-            height: 80px;
-            line-height: 80px;
-            text-align: center;
-            margin: 0 4px 3px 4px;
-        }
-
-        .btn {
-            appearance: none;
-            background-color: #2ea44f;
-            border: 1px solid rgba(27, 31, 35, .15);
-            border-radius: 6px;
-            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-            box-sizing: border-box;
-            color: #fff;
-            cursor: pointer;
-            display: inline-block;
-            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 20px;
-            padding: 6px 16px;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: middle;
-            white-space: nowrap;
-        }
-
-        .btn {
-            background-color: #fff;
-            border: 1px solid #d5d9d9;
-            border-radius: 8px;
-            box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-            box-sizing: border-box;
-            color: #0f1111;
-            cursor: pointer;
-            display: inline-block;
-            font-family: "Amazon Ember", sans-serif;
-            font-size: 13px;
-            line-height: 29px;
-            padding: 0 10px 0 11px;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: middle;
-            width: 100px;
-        }
-
-        .btn:hover {
-            background-color: #f7fafa;
-        }
-
-        .btn:focus {
-            border-color: #008296;
-            box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-            outline: 0;
-        }
-
-        .btn-2 {
-            background-color: #e1ecf4;
-            border-radius: 3px;
-            border: 1px solid #7aa7c7;
-            box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-            box-sizing: border-box;
-            color: #39739d;
-            cursor: pointer;
-            display: block;
-            font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.15385;
-            margin: 2em auto;
-            outline: none;
-            padding: 8px .8em;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-        }
-
-        .btn-2:hover,
-        .btn-2:focus {
-            background-color: #b3d3ea;
-            color: #2c5777;
-        }
-
-        .btn-2:focus {
-            box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
-        }
-
-        .btn-2:active {
-            background-color: #a0c7e4;
-            box-shadow: none;
-            color: #2c5777;
-        }
-
-        #code-all>.code-title {
-            background-image: url("data:image/png;base64,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");
-        }
-
-        #code-alipay {
-            background-color: #54b4ef;
-        }
-
-        #code-wechat {
-            background-color: #54bc6e;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- 万能收款码&外部链接 -->
-    <div class="external" id="external-links">
-        <a href="works.html"><button class="btn">我的作品</button></a>
-        <a href="https://space.bilibili.com/275212628"><button class="btn">我的 Bilibili</button></a>
-        <a href="https://github.com/alex3236"><button class="btn">我的 Github</button></a>
-    </div>
-    <div class="code-item" id="code-all">
-        <!-- <center> -->
-        <div class="code-title"></div>
-        <div id="code-btn">
-            <button class="btn-2" role="button" onclick="wechat()">微信</button>
-            <button class="btn-2" role="button" onclick="alipay()">支付宝</button>
+    <!-- Github Badge -->
+    <a href="https://github.com/alex3236/pay" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <!-- Main Container -->
+    <div class="container h-100 d-flex justify-content-center text-center">
+        <div class="jumbotron my-auto">
+            <img class="border border-2 rounded-circle mb-2 mx-auto d-block" id="avatar" alt="avatar"></img>
+            <h6 class="display-6"><script>document.write(settings.name)</script></h6>
+            <p class="mb-3"><script>document.write(settings.sign)</script></p>
+            <div id="form" style="width:350px;">
+            </div>
+            <div class="btn-group align-items-center" role="group">
+                <button type="button" class="btn btn-primary" value="alipay">
+                    <i class="icon-alipay"></i>支付宝
+                </button>
+                <button type="button" class="btn btn-success" value="wechat">
+                    <i class="icon-wechat"></i>微信
+                </button>
+                <button type="button" class="btn btn-danger" value="qq">
+                    <i class="icon-qq"></i>QQ
+                </button>
+            </div>
         </div>
-        <div class="code-footer">选择支付方式</div>
-        <!-- </center> -->
     </div>
 
-    <!-- 微信二维码展示区域 -->
-    <div class="code-item" id="code-wechat">
-        <!-- <div class="code-title"></div> -->
-        <div class="code-area">
-            <img id="wechat-url" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body align-items-center">
+                    <div class="text-center">
+                        <p class="lead">使用<span id="app-name">支付宝</span>扫一扫</p>
+                        <div id="qrcode"></div>
+                        <p><small>*手机用户可截图后打开相应应用扫描</small></p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="code-footer">微信扫描二维码即可付款</div>
     </div>
 
-    <div class="code-item" id="code-alipay">
-        <!-- <div class="code-title"></div> -->
-        <div class="code-area">
-            <img id="alipay-url" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=">
+    <!-- Footer -->
+    <footer class="footer fixed-bottom">
+        <div class="container text-center mb-2">
+            <p class="text-muted"><script>document.write(settings.name);</script> &copy; <span><script>document.write(/\d{4}/.exec(Date())[0]);</script></span> All rights reserved.</p>
         </div>
-        <div class="code-footer">支付宝扫描二维码即可付款</div>
-    </div>
+    </footer>
 
-    <div class="code-item" id="tip" style="text-align: center;">
-        <p style="color:white">提示：手机可长按保存后打开对应软件识别</p>
-    </div>
-
-    <script>
-        /* 二维码生成 https://github.com/lifthrasiir/qr.js/ */
-        !function (r, n, t) { "function" == typeof define && define.amd ? define([], t) : "object" == typeof module && module.exports ? module.exports = t() : r.QRCode = t() }(this, 0, function () { for (var r = [null, [[10, 7, 17, 13], [1, 1, 1, 1], []], [[16, 10, 28, 22], [1, 1, 1, 1], [4, 16]], [[26, 15, 22, 18], [1, 1, 2, 2], [4, 20]], [[18, 20, 16, 26], [2, 1, 4, 2], [4, 24]], [[24, 26, 22, 18], [2, 1, 4, 4], [4, 28]], [[16, 18, 28, 24], [4, 2, 4, 4], [4, 32]], [[18, 20, 26, 18], [4, 2, 5, 6], [4, 20, 36]], [[22, 24, 26, 22], [4, 2, 6, 6], [4, 22, 40]], [[22, 30, 24, 20], [5, 2, 8, 8], [4, 24, 44]], [[26, 18, 28, 24], [5, 4, 8, 8], [4, 26, 48]], [[30, 20, 24, 28], [5, 4, 11, 8], [4, 28, 52]], [[22, 24, 28, 26], [8, 4, 11, 10], [4, 30, 56]], [[22, 26, 22, 24], [9, 4, 16, 12], [4, 32, 60]], [[24, 30, 24, 20], [9, 4, 16, 16], [4, 24, 44, 64]], [[24, 22, 24, 30], [10, 6, 18, 12], [4, 24, 46, 68]], [[28, 24, 30, 24], [10, 6, 16, 17], [4, 24, 48, 72]], [[28, 28, 28, 28], [11, 6, 19, 16], [4, 28, 52, 76]], [[26, 30, 28, 28], [13, 6, 21, 18], [4, 28, 54, 80]], [[26, 28, 26, 26], [14, 7, 25, 21], [4, 28, 56, 84]], [[26, 28, 28, 30], [16, 8, 25, 20], [4, 32, 60, 88]], [[26, 28, 30, 28], [17, 8, 25, 23], [4, 26, 48, 70, 92]], [[28, 28, 24, 30], [17, 9, 34, 23], [4, 24, 48, 72, 96]], [[28, 30, 30, 30], [18, 9, 30, 25], [4, 28, 52, 76, 100]], [[28, 30, 30, 30], [20, 10, 32, 27], [4, 26, 52, 78, 104]], [[28, 26, 30, 30], [21, 12, 35, 29], [4, 30, 56, 82, 108]], [[28, 28, 30, 28], [23, 12, 37, 34], [4, 28, 56, 84, 112]], [[28, 30, 30, 30], [25, 12, 40, 34], [4, 32, 60, 88, 116]], [[28, 30, 30, 30], [26, 13, 42, 35], [4, 24, 48, 72, 96, 120]], [[28, 30, 30, 30], [28, 14, 45, 38], [4, 28, 52, 76, 100, 124]], [[28, 30, 30, 30], [29, 15, 48, 40], [4, 24, 50, 76, 102, 128]], [[28, 30, 30, 30], [31, 16, 51, 43], [4, 28, 54, 80, 106, 132]], [[28, 30, 30, 30], [33, 17, 54, 45], [4, 32, 58, 84, 110, 136]], [[28, 30, 30, 30], [35, 18, 57, 48], [4, 28, 56, 84, 112, 140]], [[28, 30, 30, 30], [37, 19, 60, 51], [4, 32, 60, 88, 116, 144]], [[28, 30, 30, 30], [38, 19, 63, 53], [4, 28, 52, 76, 100, 124, 148]], [[28, 30, 30, 30], [40, 20, 66, 56], [4, 22, 48, 74, 100, 126, 152]], [[28, 30, 30, 30], [43, 21, 70, 59], [4, 26, 52, 78, 104, 130, 156]], [[28, 30, 30, 30], [45, 22, 74, 62], [4, 30, 56, 82, 108, 134, 160]], [[28, 30, 30, 30], [47, 24, 77, 65], [4, 24, 52, 80, 108, 136, 164]], [[28, 30, 30, 30], [49, 25, 81, 68], [4, 28, 56, 84, 112, 140, 168]]], n = /^\d*$/, t = /^[A-Za-z0-9 $%*+\-./:]*$/, e = /^[A-Z0-9 $%*+\-./:]*$/, o = [], a = [-1], u = 0, f = 1; u < 255; ++u)o.push(f), a[f] = u, f = 2 * f ^ (f >= 128 ? 285 : 0); var i = [[]]; for (u = 0; u < 30; ++u) { for (var h = i[u], s = [], c = 0; c <= u; ++c) { var l = c < u ? o[h[c]] : 0, v = o[(u + (h[c - 1] || 0)) % 255]; s.push(a[l ^ v]) } i.push(s) } var p = {}; for (u = 0; u < 45; ++u)p["0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".charAt(u)] = u; var g = [function (r, n) { return (r + n) % 2 == 0 }, function (r, n) { return r % 2 == 0 }, function (r, n) { return n % 3 == 0 }, function (r, n) { return (r + n) % 3 == 0 }, function (r, n) { return ((r / 2 | 0) + (n / 3 | 0)) % 2 == 0 }, function (r, n) { return r * n % 2 + r * n % 3 == 0 }, function (r, n) { return (r * n % 2 + r * n % 3) % 2 == 0 }, function (r, n) { return ((r + n) % 2 + r * n % 3) % 2 == 0 }], d = function (r) { return r > 6 }, m = function (n, t) { var e = -8 & function (n) { var t = r[n], e = 16 * n * n + 128 * n + 64; return d(n) && (e -= 36), t[2].length && (e -= 25 * t[2].length * t[2].length - 10 * t[2].length - 55), e }(n), o = r[n]; return e -= 8 * o[0][t] * o[1][t] }, w = function (r, n) { switch (n) { case 1: return r < 10 ? 10 : r < 27 ? 12 : 14; case 2: return r < 10 ? 9 : r < 27 ? 11 : 13; case 4: return r < 10 ? 8 : 16; case 8: return r < 10 ? 8 : r < 27 ? 10 : 12 } }, C = function (r, n, t) { var e = m(r, t) - 4 - w(r, n); switch (n) { case 1: return 3 * (e / 10 | 0) + (e % 10 < 4 ? 0 : e % 10 < 7 ? 1 : 2); case 2: return 2 * (e / 11 | 0) + (e % 11 < 6 ? 0 : 1); case 4: return e / 8 | 0; case 8: return e / 13 | 0 } }, A = function (r, n) { for (var t = r.slice(0), e = r.length, u = n.length, f = 0; f < u; ++f)t.push(0); for (f = 0; f < e;) { var i = a[t[f++]]; if (i >= 0) for (var h = 0; h < u; ++h)t[f + h] ^= o[(i + n[h]) % 255] } return t.slice(e) }, x = function (r, n, t, e) { for (var o = r << e, a = n - 1; a >= 0; --a)o >> e + a & 1 && (o ^= t << a); return r << e | o }, b = function (r, n, t) { for (var e = g[t], o = r.length, a = 0; a < o; ++a)for (var u = 0; u < o; ++u)n[a][u] || (r[a][u] ^= e(a, u)); return r }, y = function (r, n, t, e) { for (var o = r.length, a = 21522 ^ x(t << 3 | e, 5, 1335, 10), u = 0; u < 15; ++u) { var f = [o - 1, o - 2, o - 3, o - 4, o - 5, o - 6, o - 7, o - 8, 7, 5, 4, 3, 2, 1, 0][u]; r[[0, 1, 2, 3, 4, 5, 7, 8, o - 7, o - 6, o - 5, o - 4, o - 3, o - 2, o - 1][u]][8] = r[8][f] = a >> u & 1 } return r }, $ = function (r) { for (var n = function (r) { for (var n = 0, t = 0; t < r.length; ++t)r[t] >= 5 && (n += r[t] - 5 + 3); for (t = 5; t < r.length; t += 2) { var e = r[t]; r[t - 1] == e && r[t - 2] == 3 * e && r[t - 3] == e && r[t - 4] == e && (r[t - 5] >= 4 * e || r[t + 1] >= 4 * e) && (n += 40) } return n }, t = r.length, e = 0, o = 0, a = 0; a < t; ++a) { var u, f = r[a]; u = [0]; for (var i = 0; i < t;) { for (h = 0; i < t && f[i]; ++h)++i; for (u.push(h), h = 0; i < t && !f[i]; ++h)++i; u.push(h) } e += n(u), u = [0]; for (i = 0; i < t;) { var h; for (h = 0; i < t && r[i][a]; ++h)++i; for (u.push(h), h = 0; i < t && !r[i][a]; ++h)++i; u.push(h) } e += n(u); var s = r[a + 1] || []; o += f[0]; for (i = 1; i < t; ++i) { var c = f[i]; o += c, f[i - 1] == c && s[i] === c && s[i - 1] === c && (e += 3) } } return e += 10 * (Math.abs(o / t / t - .5) / .05 | 0) }, k = function (n, t, e, o, a) { var u = r[t], f = function (r, n, t, e) { var o = [], a = 0, u = 8, f = t.length, i = function (r, n) { if (n >= u) { for (o.push(a | r >> (n -= u)); n >= 8;)o.push(r >> (n -= 8) & 255); a = 0, u = 8 } n > 0 && (a |= (r & (1 << n) - 1) << (u -= n)) }, h = w(r, n); switch (i(n, 4), i(f, h), n) { case 1: for (var s = 2; s < f; s += 3)i(parseInt(t.substring(s - 2, s + 1), 10), 10); i(parseInt(t.substring(s - 2), 10), [0, 4, 7][f % 3]); break; case 2: for (s = 1; s < f; s += 2)i(45 * p[t.charAt(s - 1)] + p[t.charAt(s)], 11); f % 2 == 1 && i(p[t.charAt(s - 1)], 6); break; case 4: for (s = 0; s < f; ++s)i(t[s], 8) }for (i(0, 4), u < 8 && o.push(a); o.length + 1 < e;)o.push(236, 17); return o.length < e && o.push(236), o }(t, e, n, m(t, o) >> 3); f = function (r, n, t) { for (var e = [], o = r.length / n | 0, a = 0, u = n - r.length % n, f = 0; f < u; ++f)e.push(a), a += o; for (f = u; f < n; ++f)e.push(a), a += o + 1; e.push(a); var i = []; for (f = 0; f < n; ++f)i.push(A(r.slice(e[f], e[f + 1]), t)); var h = [], s = r.length / n | 0; for (f = 0; f < s; ++f)for (var c = 0; c < n; ++c)h.push(r[e[c] + f]); for (c = u; c < n; ++c)h.push(r[e[c + 1] - 1]); for (f = 0; f < t.length; ++f)for (c = 0; c < n; ++c)h.push(i[c][f]); return h }(f, u[1][o], i[u[0][o]]); var h = function (n) { for (var t = r[n], e = function (r) { return 4 * r + 17 }(n), o = [], a = [], u = 0; u < e; ++u)o.push([]), a.push([]); var f = function (r, n, t, e, u) { for (var f = 0; f < t; ++f)for (var i = 0; i < e; ++i)o[r + f][n + i] = u[f] >> i & 1, a[r + f][n + i] = 1 }; f(0, 0, 9, 9, [127, 65, 93, 93, 93, 65, 383, 0, 64]), f(e - 8, 0, 8, 9, [256, 127, 65, 93, 93, 93, 65, 127]), f(0, e - 8, 9, 8, [254, 130, 186, 186, 186, 130, 254, 0, 0]); for (u = 9; u < e - 8; ++u)o[6][u] = o[u][6] = 1 & ~u, a[6][u] = a[u][6] = 1; var i = t[2], h = i.length; for (u = 0; u < h; ++u)for (var s = 0 == u ? h - 1 : h, c = 0 == u || u == h - 1 ? 1 : 0; c < s; ++c)f(i[u], i[c], 5, 5, [31, 17, 21, 17, 31]); if (d(n)) { var l = x(n, 6, 7973, 12), v = 0; for (u = 0; u < 6; ++u)for (c = 0; c < 3; ++c)o[u][e - 11 + c] = o[e - 11 + c][u] = l >> v++ & 1, a[u][e - 11 + c] = a[e - 11 + c][u] = 1 } return { matrix: o, reserved: a } }(t), s = h.matrix, c = h.reserved; if (function (r, n, t) { for (var e = r.length, o = 0, a = -1, u = e - 1; u >= 0; u -= 2) { 6 == u && --u; for (var f = a < 0 ? e - 1 : 0, i = 0; i < e; ++i) { for (var h = u; h > u - 2; --h)n[f][h] || (r[f][h] = t[o >> 3] >> (7 & ~o) & 1, ++o); f += a } a = -a } }(s, c, f), a < 0) { b(s, c, 0), y(s, 0, o, 0); var l = 0, v = $(s); for (b(s, c, 0), a = 1; a < 8; ++a) { b(s, c, a), y(s, 0, o, a); var g = $(s); v > g && (v = g, l = a), b(s, c, a) } a = l } return b(s, c, a), y(s, 0, o, a), s }, L = { generate: function (r, o) { var a = { numeric: 1, alphanumeric: 2, octet: 4 }, u = { L: 1, M: 0, Q: 3, H: 2 }, f = (o = o || {}).version || -1, i = u[(o.ecclevel || "L").toUpperCase()], h = o.mode ? a[o.mode.toLowerCase()] : -1, s = "mask" in o ? o.mask : -1; if (h < 0) h = "string" == typeof r ? r.match(n) ? 1 : r.match(e) ? 2 : 4 : 4; else if (1 != h && 2 != h && 4 != h) throw "invalid or unsupported mode"; if (null === (r = function (r, e) { switch (r) { case 1: return e.match(n) ? e : null; case 2: return e.match(t) ? e.toUpperCase() : null; case 4: if ("string" == typeof e) { for (var o = [], a = 0; a < e.length; ++a) { var u = e.charCodeAt(a); u < 128 ? o.push(u) : u < 2048 ? o.push(192 | u >> 6, 128 | 63 & u) : u < 65536 ? o.push(224 | u >> 12, 128 | u >> 6 & 63, 128 | 63 & u) : o.push(240 | u >> 18, 128 | u >> 12 & 63, 128 | u >> 6 & 63, 128 | 63 & u) } return o } return e } }(h, r))) throw "invalid data format"; if (i < 0 || i > 3) throw "invalid ECC level"; if (f < 0) { for (f = 1; f <= 40 && !(r.length <= C(f, h, i)); ++f); if (f > 40) throw "too large data" } else if (f < 1 || f > 40) throw "invalid version"; if (-1 != s && (s < 0 || s > 8)) throw "invalid mask"; return k(r, f, h, i, s) }, generatePNG: function (r, n) { n = n || {}; var t, e = L.generate(r, n), o = Math.max(n.modulesize || 5, .5), a = Math.max(null != n.margin ? n.margin : 4, 0), u = e.length, f = o * (u + 2 * a), i = document.createElement("canvas"); if (i.width = i.height = f, !(t = i.getContext("2d"))) throw "canvas support is needed for PNG output"; t.fillStyle = "#fff", t.fillRect(0, 0, f, f), t.fillStyle = "#000"; for (var h = 0; h < u; ++h)for (var s = 0; s < u; ++s)e[h][s] && t.fillRect(o * (a + s), o * (a + h), o, o); return i.toDataURL() } }; return L });
-
-        function wechat() {
-            document.getElementById("code-all").style.display = "none";
-            document.getElementById("wechat-url").src = QRCode.generatePNG(setting.wechatUrl, { margin: 0 });
-            document.getElementById("code-wechat").style.display = "block";
-            document.getElementById("tip").style.display = "block";
-        }
-
-        function alipay() {
-            document.getElementById("code-all").style.display = "none";
-            document.getElementById("alipay-url").src = QRCode.generatePNG(window.location.href, { margin: 0 });
-            document.getElementById("code-alipay").style.display = "block";
-            document.getElementById("tip").style.display = "block";
-            // window.location.href = setting.aliUrl;
-        }
-
-        if (navigator.userAgent.match(/Alipay/i)) {
-            /* 支付宝 */
-            window.location.href = setting.aliUrl;
-        } else {
-            /* 其它，显示“万能码” */
-            document.getElementById("code-all").style.display = "block";
-            document.getElementById("external-links").style.display = "block";
-        }
-    </script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/qrcode.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
