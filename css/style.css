@@ -29,8 +29,8 @@ img {
 
 @font-face {
     font-family: 'icons';
-    src: url('fonts/icons.eot?185fbz');
-    src: url('fonts/icons.eot?185fbz#iefix') format('embedded-opentype'), url('fonts/icons.ttf?185fbz') format('truetype'), url('fonts/icons.woff?185fbz') format('woff'), url('fonts/icons.svg?185fbz#icons') format('svg');
+    src: url('../fonts/icons.eot?185fbz');
+    src: url('../fonts/icons.eot?185fbz#iefix') format('embedded-opentype'), url('../fonts/icons.ttf?185fbz') format('truetype'), url('../fonts/icons.woff?185fbz') format('woff'), url('../fonts/icons.svg?185fbz#icons') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
