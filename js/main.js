@@ -8,8 +8,29 @@ function isGithub(username) {
     return filter.test(username);
 }
 
+function isColor(text) {
+    var filter = /^#[a-fA-F0-9]{6}$/;
+    return filter.test(text);
+}
+
+function isEmpty(s) {
+	return !(typeof s == 'string' && s.length > 0)
+}
+
+
 
 window.onload = function () {
+
+    if (isEmpty(urls.alipay)) {
+        $("#alipay-btn").remove();
+    }
+    if (isEmpty(urls.wechat)) {
+        $("#wechat-btn").remove();
+    }
+    if (isEmpty(urls.qq)) {
+        $("#qq-btn").remove();
+    }
+
     if (isQQ(settings.avatar)) {
         document.getElementById("avatar").src = "http://q1.qlogo.cn/g?b=qq&nk=" + settings.avatar + "&s=640";
     } else if (isGithub(settings.avatar)) {
@@ -27,15 +48,20 @@ window.onload = function () {
     });
 
     $("button").click(function () {
-        $("#app-name").text($(this).text());
+        $("span").css({display: "none"});
         if ($(this).val() == "alipay") {
+            $("#alipay-name").css({display: "inline-block"});
             qrcode.makeCode(urls.alipay);
         } else if ($(this).val() == "wechat") {
+            $("#wechat-name").css({display: "inline-block"});
             qrcode.makeCode(urls.wechat);
         } else if ($(this).val() == "qq") {
+            $("#qq-name").css({display: "inline-block"});
             qrcode.makeCode(urls.qq);
         }
-        $('#exampleModal').modal("show");
+        $('#QRModal').modal("show");
     });
+
+    $("body").css("background", isColor(settings.background)? settings.background : "url(" + settings.background + ")")
 }
 

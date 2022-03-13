@@ -6,15 +6,21 @@
 
 ### 效果展示
 
-![image](https://user-images.githubusercontent.com/45303195/154835925-7bdd539b-550c-4734-bdfa-9aa64744e5e5.png)
+![image](https://s0.wordpress.com/mshots/v1/https%3A%2F%2Fpay.alex3236.top%2F?w=1000)
 
 ### 使用方法
 
-1. 从 Releases 下载 `index.html`（单文件，无需其他）
+#### Github Pages / Vercel / Spotify ...
+
+1. Fork
 2. 修改配置
 3. 部署
 
-**要在生产环境运行，请务必从 Releases 下载！不要直接下载源码 ZIP！**
+#### 其他
+
+1. 下载源码
+2. 解压，修改配置
+3. 部署
 
 ### 配置选项
 
@@ -27,13 +33,18 @@
     const settings = {
         avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
         name: "Alex3236", // 头像下的昵称
-        sign: "请选择支付方式" // 个性签名 (提示文字)
+        sign: "请我喝杯咖啡如何？( •̀ ω •́ )✧", // 个性签名 (提示文字)
+        background: "#e5f2ff" // 背景颜色代码，也可为图片 URL (e.g. https://www.dmoe.cc/random.php)
     }
     const urls = {
-        // 你可以使用草料二维码等二维码识别工具识别二维码，获取其中的链接
-        alipay: "https://qr.alipay.com/foobar?t=0", // 支付宝二维码链接
-        wechat: "wxp://foo_bar", // 微信二维码链接
+        // 你可以使用草料二维码等二维码识别工具识别你的支付二维码，获取链接
+        // 把某个参数放空或删除，则不显示对应按钮
+        alipay: "https://qr.alipay.com/foo", // 支付宝二维码链接
+        wechat: "wxp://bar", // 微信二维码链接
         qq: "https://i.qianbao.qq.com/wallet/sqrcode.htm?foo=bar" // QQ 二维码链接
     }
 </script>
 ```
+
+### 许可
+自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可协议。

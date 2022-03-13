@@ -1,6 +1,9 @@
 html,
 body {
     height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .container {
@@ -11,10 +14,6 @@ body {
 
 .pricing-header {
     max-width: 700px;
-}
-
-i {
-    padding-right: 10px;
 }
 
 div.btn-group {
@@ -36,9 +35,14 @@ img {
     font-display: block;
 }
 
+span {
+    padding: 5px;
+}
+
 i {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icons' !important;
+    padding-right: 5px;
     speak: never;
     font-style: normal;
     font-weight: normal;
