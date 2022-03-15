@@ -51,15 +51,15 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
 
 ### 生成徽章
 
-你可以在网页底部找到徽章生成器。
+你可以在网页底部找到一个非常简（垃）洁（圾）的徽章生成器。
 
-![Image](https://user-images.githubusercontent.com/45303195/158330172-30d541c0-ec82-47eb-93a7-495d39a253c0.png)
+![Image](https://user-images.githubusercontent.com/45303195/158335111-533f73fb-264d-4eee-ac9a-5d37a3a8c3ff.png)
 
 ### 支持我
 
 制作不易，如果喜欢不妨赞助杯咖啡 awa
 
-[![Sponsor me!](https://img.shields.io/badge/Sponsor%20me!-blue?logo=alipay&logoColor=white)](https://pay-alex3236.vercel.app/)
+[![Sponsor me!](https://img.shields.io/badge/Sponsor%20me!-blue?logo=alipay&logoColor=white&style=flat-square)](https://pay-alex3236.vercel.app/)
 
 ### 许可
 自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可协议。请勿以任何形式出售此源码。

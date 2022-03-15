@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badge Generator</title>
+    <title>徽章生成器</title>
     <style>
         body, html {
             white-space: normal;
             word-wrap: break-word;
-            word-break: break-all；
+            word-break: break-all;
+            font-family: Helvetica, Arial, sans-serif;
         }
     </style>
 </head>
@@ -46,29 +47,41 @@
 
             text = document.BadgeInfo.Text.value;
             color = document.BadgeInfo.Color.value;
+            logo_color = document.BadgeInfo.LogoColor.value;
             icon = document.BadgeInfo.Icon.value;
+            style = document.BadgeInfo.Style.value;
 
-            badge_url = encodeURI("https://img.shields.io/badge/text-color?logo=Alipay&logoColor=white".replace("text", text).replace("color", color).replace("Alipay", icon));
+            badge_url = encodeURI("https://img.shields.io/badge/text-color?logo=Alipay&logoColor=white&style=style_text".replace("text", text).replace("color", color).replace("Alipay", icon).replace("style_text", style).replace("white", logo_color));
 
             code_markdown.innerText = "[![text](badge_url)](url)".replace("text", text).replace("badge_url", badge_url).replace("url", url);
             code_html.innerText = '<a href="url"><img src="badge_url" alt="text"></a>'.replace("text", text).replace("badge_url", badge_url).replace("url", url);
             preview.innerHTML = code_html.innerText;
-            // alert("你輸入的值：" + myTxt.value);
         };
     </script>
     <h1>徽章生成器</h1>
+    <p>快速生成一个赞助按钮，可用于 Git 项目或个人网站。</p>
     <form name="BadgeInfo">
-        <label>图标：</label>
+        <label>样式：</label>
         <select onChange="update()" name="Icon">
             <option value ="alipay">支付宝</option>
             <option value ="wechat">微信</option>
             <option value ="tencentqq">QQ</option>
         </select>
+        <select onChange="update()" name="Style">
+            <option value="flat-square">扁平方块</option>
+            <option value="flat">扁平</option>
+            <option value="plastic">塑料</option>
+            <option value="for-the-badge">For the Badge</option>
+        </select>
+
         <br>
         <label>文字：</label>
         <input oninput="update()" type="text" name="Text" value="Sponsor me!" required />
         <br>
-        <label>颜色：</label>
+        <label>Logo 颜色：</label>
+        <input oninput="update()" type="text" name="LogoColor" value="white" required />
+        <br>
+        <label>背景颜色：</label>
         <input oninput="update()" type="text" name="Color" value="blue" required />
         <p>* 颜色可以是一个十六进制代码，或者是以下之一：<code>brightgreen, green, yellowgreen, yellow, orange, red, blue, lightgrey, success, important, critical, informational, inactive, blueviolet, ff69b4, 9cf, 2ea44f</code></p>
     </form>
@@ -80,7 +93,7 @@
     <h2>预览</h2>
     <code id="preview"></code>
     <script>
-        if (isOffline()) {
+        if (!isOffline()) {
             document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络再使用徽章生成器！</p>";
         } else {
             update();
