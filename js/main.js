@@ -46,6 +46,7 @@ function _show(evt) {
         qrcode.makeCode(urls.qq);
     }
     $("#scan-tip").text("手机用户可截图后打开相应应用扫描");
+    $("#qrcode canvas").remove();
 }
 
 window.onload = function() {
