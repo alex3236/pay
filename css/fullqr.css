@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft yahei;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #fff;
+}
+
+.code-item {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding-bottom: 1px;
+    background-color: #5c92ef;
+}
+
+.code-title {
+    height: 100px;
+    background-color: #f2f2f2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    margin-top: -1px;
+}
+
+.code-title p {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 3em;
+}
+
+.code-title i {
+    padding: 15px;
+}
+
+.icon-alipay:before {
+    color: #09f;
+}
+
+.icon-wechat:before {
+    color: rgb(66, 190, 66);
+}
+
+.icon-qq:before {
+    color: rgb(182, 39, 39);
+}
+
+.code-area {
+    text-align: center;
+    /* font-size: 70%; */
+}
+
+.code-area>img {
+    display: inline-block !important;
+    border: 1em solid white;
+    /* vertical-align : bottom; */
+    margin: 80px 0;
+    /* box-sizing: border-box; */
+    width: 50%;
+    min-width: 100px;
+}
+
+.code-footer {
+    height: 80px;
+    text-align: center;
+    background-color: #fff;
+    color: #666;
+    line-height: 80px;
+    font-size: 20px;
+    margin: -2px 2px 1px 2px;
+}
+
+#code-all {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

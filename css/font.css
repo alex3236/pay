@@ -1,31 +1,3 @@
-html,
-body {
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.container {
-    /* height: 100%;
-    display: flex; */
-    max-width: 960px;
-}
-
-.pricing-header {
-    max-width: 700px;
-}
-
-div.btn-group {
-    margin: 0 auto;
-    text-align: center;
-    width: inherit;
-}
-
-img {
-    max-width: 120px;
-}
-
 @font-face {
     font-family: 'icons';
     src: url('../fonts/icons.eot?185fbz');
@@ -35,28 +7,9 @@ img {
     font-display: block;
 }
 
-span.app-name {
-    padding: 5px;
-}
-
-.very-small {
-    font-size: 0.8em;
-    color: rgb(199, 199, 199);
-    margin: 0;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline lightblue;
-}
-
 i {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icons' !important;
-    padding-right: 5px;
     speak: never;
     font-style: normal;
     font-weight: normal;
@@ -68,8 +21,12 @@ i {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-alipay:before {
+.icon-qr:before {
     content: "\e900";
+}
+
+.icon-alipay:before {
+    content: "\e901";
 }
 
 .icon-qq:before {

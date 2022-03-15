@@ -1,3 +1,5 @@
+var qrcode = new QRCode(document.getElementById("qrcode"));
+
 function isQQ(qq) {
     var filter = /^\s*[.0-9]{5,11}\s*$/;
     return filter.test(qq);
@@ -17,9 +19,38 @@ function isEmpty(s) {
 	return !(typeof s == 'string' && s.length > 0)
 }
 
+function show(evt) {
+    _show(evt);
+    $('#QRModal').modal("show");
+}
 
+function _show(evt) {
+    if (typeof evt === "string") {
+        val = evt
+    } else {
+        val = evt.target.value
+    }
+    // Clear style
+    $(".app-name").css({display: "none"});
 
-window.onload = function () {
+    if (val == "qr") {
+        location.href = "fullqr.html";
+    } else if (val == "alipay") {
+        $("#alipay-name").css({display: "inline-block"});
+        qrcode.makeCode(urls.alipay);
+    } else if (val == "wechat") {
+        $("#wechat-name").css({display: "inline-block"});
+        qrcode.makeCode(urls.wechat);
+    } else if (val == "qq") {
+        $("#qq-name").css({display: "inline-block"});
+        qrcode.makeCode(urls.qq);
+    }
+    $("#scan-tip").text("手机用户可截图后打开相应应用扫描");
+}
+
+window.onload = function() {
+
+    $("button").click(show);
 
     if (settings.hide_badge_generator) {
         document.getElementById('badge_generator').style.display = 'none';
@@ -43,29 +74,28 @@ window.onload = function () {
         document.getElementById("avatar").src = settings.avatar;
     }
 
-    var qrcode = new QRCode(document.getElementById("qrcode"));
-
     $("#qrcode > img").css({
         "margin": "auto",
         "height": "128px",
         "width": "128px"
     });
 
-    $("button").click(function () {
-        $("span").css({display: "none"});
-        if ($(this).val() == "alipay") {
-            $("#alipay-name").css({display: "inline-block"});
-            qrcode.makeCode(urls.alipay);
-        } else if ($(this).val() == "wechat") {
-            $("#wechat-name").css({display: "inline-block"});
-            qrcode.makeCode(urls.wechat);
-        } else if ($(this).val() == "qq") {
-            $("#qq-name").css({display: "inline-block"});
-            qrcode.makeCode(urls.qq);
-        }
-        $('#QRModal').modal("show");
-    });
-
     $("body").css("background", isColor(settings.background)? settings.background : "url(" + settings.background + ")")
+
+    var have_matched = true;
+    if (navigator.userAgent.match(/Alipay/i)) {
+        _show("alipay"); // 支付宝
+    } else if(navigator.userAgent.match(/MicroMessenger\//i)) {
+        _show("wechat"); // 微信
+    } else if(navigator.userAgent.match(/QQ\//i)) {
+        _show("qq"); // QQ
+    } else {
+        have_matched = false; // 其它
+    }
+    if (have_matched) {
+        $("#scan-tip").text("可直接长按识别");
+        $('#QRModal').modal({backdrop: 'static', keyboard: false});
+        $('#QRModal').modal("show");
+    }
 }
 

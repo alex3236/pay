@@ -1,0 +1,53 @@
+html,
+body {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    /* height: 100%;
+    display: flex; */
+    max-width: 960px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+}
+
+img {
+    max-width: 120px;
+}
+
+span.app-name {
+    padding: 0px;
+}
+
+i {
+    padding-right: 5px;
+}
+
+.very-small {
+    font-size: 0.8em;
+    color: rgb(199, 199, 199);
+    margin: 0;
+}
+
+.pd0 {
+    padding-right: 0 !important;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline lightblue;
+}

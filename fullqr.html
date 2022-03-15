@@ -1,0 +1,68 @@
+<!--
+* 样式参考了 孟坤博客的多合一收款二维码，在此感谢
+-->
+<!DOCTYPE html>
+<html class=" tizaiaqkp idc0_337">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="mengkun">
+
+    <link rel="stylesheet" href="css/fullqr.css">
+    <link href="css/font.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+    <!-- 设置 -->
+    <title>二维码</title>
+    <script>
+        const settings = {
+            alipay: true, // 显示支付宝图标
+            wechat: true, // 显示微信图标
+            qq: true, // 显示 QQ 图标
+            description: "微信 / 支付宝 / QQ 扫码支付" // 描述
+        }
+    </script>
+</head>
+
+<body>
+    <div class="code-item" id="code-all" style="display: block;">
+        <div class="code-title">
+            <p>
+                <script>
+                    if (settings.alipay) { document.write('<i class="icon-alipay"></i>\n'); };
+                    if (settings.wechat) { document.write('<i class="icon-wechat"></i>\n'); };
+                    if (settings.qq) { document.write('<i class="icon-qq"></i>\n'); };
+                </script>
+            </p>
+        </div>
+        <div id="code-area" class="code-area">
+            <!-- <img id="page-url" src=""> -->
+        </div>
+        <div class="code-footer">
+            <p><script>document.write(settings.description)</script></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/qrcode.min.js"></script>
+    <script>
+        window.onload = function () {
+            if (!window.navigator.onLine || location.href.startsWith("file://")) {
+                document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络查看网站二维码！</p>";
+            } else {
+                const url = new URL(".", location.href).href;
+                new QRCode(document.getElementById("code-area"), {
+                    text: url,
+                    width: 300,
+                    height: 300,
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

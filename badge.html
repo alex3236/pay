@@ -1,3 +1,7 @@
+<!--
+* Badge Generator
+* By Alex3236
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -19,10 +23,6 @@
     <script type="text/javascript">
         const url = new URL(".", location.href).href;
         const img = document.getElementById("preview");
-
-        function isOffline() {
-            return (!window.navigator.onLine || location.href.startsWith("file://"));
-        }
 
         function copy(btn, text) {
             navigator.clipboard.writeText(text).then(
@@ -93,7 +93,7 @@
     <h2>预览</h2>
     <code id="preview"></code>
     <script>
-        if (!isOffline()) {
+        if (!window.navigator.onLine || location.href.startsWith("file://")) {
             document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络再使用徽章生成器！</p>";
         } else {
             update();

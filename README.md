@@ -6,7 +6,13 @@
 
 ### 效果展示
 
-![Image](https://user-images.githubusercontent.com/45303195/158306208-a682e9c1-1f9c-4614-950e-6078b5f4eca0.png)
+![Image](https://user-images.githubusercontent.com/45303195/158370230-a8befb69-c84a-4157-bc3a-d20eaa4a8744.png)
+
+### 特点
+
+- 纯前端实现，一键免服务器部署，无需安装，无需数据库；
+- 免维护，无多余的配置，一次修改配置即可永久使用。
+- 智能识别客户端匹配二维码，无需手动选择
 
 ### 使用方法
 
@@ -26,10 +32,10 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
 
 ### 配置选项
 
-`index.html`中，第 13 行起为配置选项。
+`index.html`中配置项如下。
 
 ```html
-<!-- Settings: Change these to your links -->
+<!-- 设置 -->
 <title>(～￣▽￣)～</title>
 <script>
     const settings = {
@@ -49,17 +55,38 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
 </script>
 ```
 
+`fullqr.html` 中配置项如下。
+
+```html
+    <!-- 设置 -->
+    <title>二维码</title>
+    <script>
+        const settings = {
+            alipay: true, // 显示支付宝图标
+            wechat: true, // 显示微信图标
+            qq: true // 显示 QQ 图标
+        }
+    </script>
+```
+
 ### 生成徽章
 
 你可以在网页底部找到一个非常简（垃）洁（圾）的徽章生成器。
 
 ![Image](https://user-images.githubusercontent.com/45303195/158335111-533f73fb-264d-4eee-ac9a-5d37a3a8c3ff.png)
 
+### 大二维码
+
+点击二维码图标即可打开大二维码，你可以将其直接发送给他人扫描。
+
+![Image](https://user-images.githubusercontent.com/45303195/158370586-0d65b0b5-d955-41dd-b3ca-6042e257def2.png)
+
+### :warning: 注意
+- 请用专门的代码编辑器（如 `Notepad2` / `VS Code`）编辑代码，切忌用记事本编辑，否则可能出现中文乱码！
+- 自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可协议。请勿以任何形式出售此源码。
+
 ### 支持我
 
 制作不易，如果喜欢不妨赞助杯咖啡 awa
 
 [![Sponsor me!](https://img.shields.io/badge/Sponsor%20me!-blue?logo=alipay&logoColor=white&style=flat-square)](https://pay-alex3236.vercel.app/)
-
-### 许可
-自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可协议。请勿以任何形式出售此源码。
