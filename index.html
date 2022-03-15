@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Alex3236, and Bootstrap contributors">
 
@@ -17,7 +18,8 @@
             avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
             name: "Alex3236", // 头像下的昵称
             sign: "请我喝杯咖啡如何？( •̀ ω •́ )✧", // 个性签名 (提示文字)
-            background: "#F2FDFF" // 背景颜色代码，也可为图片 URL (e.g. https://www.dmoe.cc/random.php)
+            background: "#F2FDFF", // 背景颜色代码，也可为图片 URL (e.g. https://www.dmoe.cc/random.php)
+            hide_badge_generator: false // 是否隐藏徽章生成器
         }
         const urls = {
             // 你可以使用草料二维码等二维码识别工具识别你的支付二维码，获取链接
@@ -69,9 +71,9 @@
                     <div class="text-center">
                         <p class="lead">
                             使用
-                            <span id="alipay-name" class="text-primary"><i class="icon-alipay"></i>支付宝</span>
-                            <span id="wechat-name" class="text-success"><i class="icon-wechat"></i>微信</span>
-                            <span id="qq-name" class="text-danger"><i class="icon-qq"></i>QQ</span>
+                            <span id="alipay-name" class="text-primary app-name"><i class="icon-alipay"></i>支付宝</span>
+                            <span id="wechat-name" class="text-success app-name"><i class="icon-wechat"></i>微信</span>
+                            <span id="qq-name" class="text-danger app-name"><i class="icon-qq"></i>QQ</span>
                             扫一扫
                         </p>
                         <div id="qrcode"></div>
@@ -85,10 +87,12 @@
     <!-- Footer -->
     <footer class="footer fixed-bottom">
         <div class="container text-center mb-2">
+            <a id="badge_generator" href="badge.html" target="_blank" rel="noopener noreferrer"><small class="very-small">Generate a badge</small></a>
+            <br>
             <p class="text-muted">
-                <script>document.write(settings.name);</script> &copy; <span>
+                <script>document.write(settings.name);</script> &copy;<span>
                     <script>document.write(/\d{4}/.exec(Date())[0]);</script>
-                </span> All rights reserved.
+                </span>All rights reserved.
             </p>
         </div>
     </footer>
@@ -98,5 +102,4 @@
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/qrcode.min.js"></script>
     <script src="js/main.js"></script>
 </body>
-
 </html>

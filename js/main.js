@@ -21,6 +21,10 @@ function isEmpty(s) {
 
 window.onload = function () {
 
+    if (settings.hide_badge_generator) {
+        document.getElementById('badge_generator').style.display = 'none';
+    }
+
     if (isEmpty(urls.alipay)) {
         $("#alipay-btn").remove();
     }

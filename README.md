@@ -10,11 +10,11 @@
 
 ### 使用方法
 
-#### 快速部署到 Vercel / Netlify （中国大陆可直连）
+#### 快速部署到 Vercel / Netlify（中国大陆可直连）
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falex3236%2Fpay&demo-title=Pay&demo-description=A%20demo%20site%20by%20Alex3236.&demo-url=https://al-pay.vercel.app/&demo-image=https://user-images.githubusercontent.com/45303195/158306208-a682e9c1-1f9c-4614-950e-6078b5f4eca0.png) [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alex3236/pay)
 
-点击按钮 -> 部署 -> 自定义域名（可选） -> 进入仓库，修改配置 -> 完成
+点击按钮 -> 部署 -> 自定义域名（可选）-> 进入仓库，修改配置 -> 完成
 
 #### 部署到 Github Pages（墙）
 
@@ -36,7 +36,8 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
         avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
         name: "Alex3236", // 头像下的昵称
         sign: "请我喝杯咖啡如何？( •̀ ω •́ )✧", // 个性签名 (提示文字)
-        background: "#e5f2ff" // 背景颜色代码，也可为图片 URL (e.g. https://www.dmoe.cc/random.php)
+        background: "#F2FDFF", // 背景颜色代码，也可为图片 URL (e.g. https://www.dmoe.cc/random.php)
+        hide_badge_generator: false // 是否隐藏徽章生成器
     }
     const urls = {
         // 你可以使用草料二维码等二维码识别工具识别你的支付二维码，获取链接
@@ -47,6 +48,18 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
     }
 </script>
 ```
+
+### 生成徽章
+
+你可以在网页底部找到徽章生成器。
+
+![Image](https://user-images.githubusercontent.com/45303195/158330172-30d541c0-ec82-47eb-93a7-495d39a253c0.png)
+
+### 支持我
+
+制作不易，如果喜欢不妨赞助杯咖啡 awa
+
+[![Sponsor me!](https://img.shields.io/badge/Sponsor%20me!-blue?logo=alipay&logoColor=white)](https://pay-alex3236.vercel.app/)
 
 ### 许可
 自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可协议。请勿以任何形式出售此源码。

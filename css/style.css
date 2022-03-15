@@ -35,8 +35,22 @@ img {
     font-display: block;
 }
 
-span {
+span.app-name {
     padding: 5px;
+}
+
+.very-small {
+    font-size: 0.8em;
+    color: rgb(199, 199, 199);
+    margin: 0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline lightblue;
 }
 
 i {

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Generator</title>
+    <style>
+        body, html {
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all；
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const url = new URL(".", location.href).href;
+        const img = document.getElementById("preview");
+
+        function isOffline() {
+            return (!window.navigator.onLine || location.href.startsWith("file://"));
+        }
+
+        function copy(btn, text) {
+            navigator.clipboard.writeText(text).then(
+                function() {
+                    console.log(btn.value)
+                    btn.value = "已复制！";
+                    btn.disabled = true;
+                    setTimeout(function() {
+                        btn.value = "复制";
+                        btn.disabled = false;
+                    }, 1000);
+                }, 
+                function() {
+                    alert("复制失败，请手动复制");
+                });
+        }
+
+        function update() {
+            code_markdown = document.getElementById("markdown");
+            code_html = document.getElementById("html");
+            preview = document.getElementById("preview");
+
+            text = document.BadgeInfo.Text.value;
+            color = document.BadgeInfo.Color.value;
+            icon = document.BadgeInfo.Icon.value;
+
+            badge_url = encodeURI("https://img.shields.io/badge/text-color?logo=Alipay&logoColor=white".replace("text", text).replace("color", color).replace("Alipay", icon));
+
+            code_markdown.innerText = "[![text](badge_url)](url)".replace("text", text).replace("badge_url", badge_url).replace("url", url);
+            code_html.innerText = '<a href="url"><img src="badge_url" alt="text"></a>'.replace("text", text).replace("badge_url", badge_url).replace("url", url);
+            preview.innerHTML = code_html.innerText;
+            // alert("你輸入的值：" + myTxt.value);
+        };
+    </script>
+    <h1>徽章生成器</h1>
+    <form name="BadgeInfo">
+        <label>图标：</label>
+        <select onChange="update()" name="Icon">
+            <option value ="alipay">支付宝</option>
+            <option value ="wechat">微信</option>
+            <option value ="tencentqq">QQ</option>
+        </select>
+        <br>
+        <label>文字：</label>
+        <input oninput="update()" type="text" name="Text" value="Sponsor me!" required />
+        <br>
+        <label>颜色：</label>
+        <input oninput="update()" type="text" name="Color" value="blue" required />
+        <p>* 颜色可以是一个十六进制代码，或者是以下之一：<code>brightgreen, green, yellowgreen, yellow, orange, red, blue, lightgrey, success, important, critical, informational, inactive, blueviolet, ff69b4, 9cf, 2ea44f</code></p>
+    </form>
+    <h2>代码</h2>
+    <h3>Markdown <input type="button" value="复制" onClick="copy(this, document.getElementById('markdown').innerText)"></h3>
+    <pre id="markdown"></pre>
+    <h3>HTML <input type="button" value="复制" onClick="copy(this, document.getElementById('html').innerText)"></h3>
+    <pre id="html"></pre>
+    <h2>预览</h2>
+    <code id="preview"></code>
+    <script>
+        if (isOffline()) {
+            document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络再使用徽章生成器！</p>";
+        } else {
+            update();
+        }
+    </script>
+</body>
+</html>
