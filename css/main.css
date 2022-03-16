@@ -6,6 +6,10 @@ body {
     background-position: center;
 }
 
+.hidden {
+    display: none;
+}
+
 .container {
     /* height: 100%;
     display: flex; */

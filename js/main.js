@@ -1,4 +1,4 @@
-var qrcode = new QRCode(document.getElementById("qrcode"));
+// var qrcode = new QRCode(document.getElementById("qrcode"));
 
 function isQQ(qq) {
     var filter = /^\s*[.0-9]{5,11}\s*$/;
@@ -37,17 +37,36 @@ function _show(evt) {
         location.href = "fullqr.html";
     } else if (val == "alipay") {
         $("#alipay-name").css({display: "inline-block"});
-        qrcode.makeCode(urls.alipay);
+        makeCode(urls.alipay);
     } else if (val == "wechat") {
         $("#wechat-name").css({display: "inline-block"});
-        qrcode.makeCode(urls.wechat);
+        makeCode(urls.wechat);
     } else if (val == "qq") {
         $("#qq-name").css({display: "inline-block"});
-        qrcode.makeCode(urls.qq);
+        makeCode(urls.qq);
     }
     $("#scan-tip").text("手机用户可截图后打开相应应用扫描");
     $("#qrcode canvas").remove();
 }
+
+function makeCode(url) {
+    $("#qrcode canvas").remove();
+    $("#qrcode img").remove();
+    $("#qrcode-canvas").qrcode({width: 300,height: 300,text: url})
+    var img = convertCanvasToImage($("#qrcode-canvas canvas")[0]);
+    $("#qrcode").append(img);
+    
+}
+
+//从 canvas 提取图片 image
+function convertCanvasToImage(canvas) {undefined
+    //新 Image 对象，可以理解为 DOM
+    var image = new Image();
+    // canvas.toDataURL 返回的是一串 Base64 编码的 URL，当然，浏览器自己肯定支持
+    // 指定格式 PNG
+    image.src = canvas.toDataURL("image/png");
+    return image;
+    }
 
 window.onload = function() {
 
