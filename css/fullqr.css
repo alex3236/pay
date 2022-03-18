@@ -1,90 +1,76 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Microsoft yahei;
-}
-
-body,
-html {
-    height: 100%;
-}
-
 body {
-    background-color: #fff;
+    background-color: lightblue;
 }
 
 .code-item {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding-bottom: 1px;
-    background-color: #5c92ef;
+    /* margin-top: 10%; */
+    /* height: 100%; */
+    background: #5c92ef;
+    border: 1px solid #e5e5e5;
 }
 
-.code-title {
-    height: 100px;
+.container.main {
+    width: 20%; 
+    /* height: 35%; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon-group,
+.code-text {
+    /* margin: 10px; */
+    margin: 0;
+    padding: 0;
     background-color: #f2f2f2;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 50%;
-    margin-top: -1px;
 }
 
-.code-title p {
-    padding: 20px 0;
-    text-align: center;
-    font-size: 3em;
+.icon-group {
+    font-size: 2.5em;
+    line-height: 2.5em;
 }
 
-.code-title i {
+.icon-group i {
     padding: 15px;
 }
 
-.icon-alipay:before {
-    color: #09f;
+.icon-alipay::before {
+    color: #00aaee;
 }
 
-.icon-wechat:before {
-    color: rgb(66, 190, 66);
+.icon-wechat::before {
+    color: #00cd0d;
 }
 
-.icon-qq:before {
-    color: rgb(182, 39, 39);
+.icon-qq::before {
+    color: #df1f1f
 }
 
-.code-area {
-    text-align: center;
-    /* font-size: 70%; */
+.code-text {
+    line-height: 3em;
+    font-size: 1.5em;
+    margin: 3px;
 }
 
-.code-area>img {
-    display: inline-block !important;
-    border: 1em solid white;
-    /* vertical-align : bottom; */
-    margin: 80px 0;
-    /* box-sizing: border-box; */
-    width: 50%;
-    min-width: 100px;
+.qrcode img {
+    display: inline-block;
+    border: 10px solid #fff;
+    margin: 10%;
 }
 
-.code-footer {
-    height: 80px;
-    text-align: center;
-    background-color: #fff;
-    color: #666;
-    line-height: 80px;
-    font-size: 20px;
-    margin: -2px 2px 1px 2px;
+html,
+body {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-#code-all {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+.hidden {
+    display: none;
+}
+
+img {
+    max-width: 200px;
 }

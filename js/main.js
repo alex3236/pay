@@ -1,4 +1,4 @@
-// var qrcode = new QRCode(document.getElementById("qrcode"));
+var show_modal = true;
 
 function isQQ(qq) {
     var filter = /^\s*[.0-9]{5,11}\s*$/;
@@ -16,33 +16,25 @@ function isColor(text) {
 }
 
 function isEmpty(s) {
-	return !(typeof s == 'string' && s.length > 0)
+    return !(typeof s == 'string' && s.length > 0)
 }
 
-function show(evt) {
-    _show(evt);
-    $('#QRModal').modal("show");
-}
-
-function _show(evt) {
-    if (typeof evt === "string") {
-        val = evt
-    } else {
-        val = evt.target.value
-    }
+function show(val) {
     // Clear style
-    $(".app-name").css({display: "none"});
+    $(".app-name").css({ display: "none" });
+    show_modal = true;
 
     if (val == "qr") {
+        show_modal = false;
         location.href = "fullqr.html";
     } else if (val == "alipay") {
-        $("#alipay-name").css({display: "inline-block"});
+        $("#alipay-name").css({ display: "inline-block" });
         makeCode(urls.alipay);
     } else if (val == "wechat") {
-        $("#wechat-name").css({display: "inline-block"});
+        $("#wechat-name").css({ display: "inline-block" });
         makeCode(urls.wechat);
     } else if (val == "qq") {
-        $("#qq-name").css({display: "inline-block"});
+        $("#qq-name").css({ display: "inline-block" });
         makeCode(urls.qq);
     }
     $("#scan-tip").text("手机用户可截图后打开相应应用扫描");
@@ -50,27 +42,31 @@ function _show(evt) {
 }
 
 function makeCode(url) {
-    $("#qrcode canvas").remove();
+    $('#qrcode-canvas').children().remove()
     $("#qrcode img").remove();
-    $("#qrcode-canvas").qrcode({width: 300,height: 300,text: url})
+    $("#qrcode-canvas").qrcode({ width: 300, height: 300, text: url })
     var img = convertCanvasToImage($("#qrcode-canvas canvas")[0]);
     $("#qrcode").append(img);
-    
 }
 
 //从 canvas 提取图片 image
-function convertCanvasToImage(canvas) {undefined
+function convertCanvasToImage(canvas) {
+    undefined
     //新 Image 对象，可以理解为 DOM
     var image = new Image();
     // canvas.toDataURL 返回的是一串 Base64 编码的 URL，当然，浏览器自己肯定支持
     // 指定格式 PNG
     image.src = canvas.toDataURL("image/png");
     return image;
-    }
+}
 
 window.onload = function() {
-
-    $("button").click(show);
+    $("button").click(
+        function () {
+            show($(this).val());
+            if (show_modal) { $('#QRModal').modal("show"); }
+        }
+    );
 
     if (settings.hide_badge_generator) {
         document.getElementById('badge_generator').style.display = 'none';
@@ -100,21 +96,21 @@ window.onload = function() {
         "width": "128px"
     });
 
-    $("body").css("background", isColor(settings.background)? settings.background : "url(" + settings.background + ")")
+    $("body").css("background", isColor(settings.background) ? settings.background : "url(" + settings.background + ")")
 
     var have_matched = true;
     if (navigator.userAgent.match(/Alipay/i)) {
-        _show("alipay"); // 支付宝
-    } else if(navigator.userAgent.match(/MicroMessenger\//i)) {
-        _show("wechat"); // 微信
-    } else if(navigator.userAgent.match(/QQ\//i)) {
-        _show("qq"); // QQ
+        show("alipay"); // 支付宝
+    } else if (navigator.userAgent.match(/MicroMessenger\//i)) {
+        show("wechat"); // 微信
+    } else if (navigator.userAgent.match(/QQ\//i)) {
+        show("qq"); // QQ
     } else {
         have_matched = false; // 其它
     }
     if (have_matched) {
         $("#scan-tip").text("可直接长按识别");
-        $('#QRModal').modal({backdrop: 'static', keyboard: false});
+        $('#QRModal').modal({ backdrop: 'static', keyboard: false });
         $('#QRModal').modal("show");
     }
 }

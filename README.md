@@ -58,15 +58,13 @@ Fork -> 仓库中 `Settings/Github Pages` 打开 -> 完成
 `fullqr.html` 中配置项如下。
 
 ```html
-    <!-- 设置 -->
-    <title>二维码</title>
-    <script>
-        const settings = {
-            alipay: true, // 显示支付宝图标
-            wechat: true, // 显示微信图标
-            qq: true // 显示 QQ 图标
-        }
-    </script>
+<!-- 设置 -->
+<script>
+    const settings = {
+        hide: [], // 隐藏的支付方式列表。可以有 alipay, wechat, qq
+        desc: "支付宝 / 微信 / QQ 扫码支付" // 描述
+    };
+</script>
 ```
 
 ### 生成徽章
