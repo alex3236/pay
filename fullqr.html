@@ -76,8 +76,8 @@
         }
         window.onload = function () {
             if (!window.navigator.onLine || location.href.startsWith("file://")) {
-                // document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络查看网站二维码！</p>";
-                // return;
+                document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络查看网站二维码！</p>";
+                return;
             }
             var url = new URL(".", window.location.href).href;
             console.log(url);
