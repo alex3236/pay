@@ -10,8 +10,7 @@ body {
 }
 
 .container.main {
-    width: 25%; 
-    min-width: 350px;
+    width: 380px;
     /* height: 35%; */
     position: absolute;
     left: 50%;
