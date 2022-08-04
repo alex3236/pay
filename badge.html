@@ -1,103 +1,123 @@
-<!--
-* Badge Generator
-* By Alex3236
--->
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Alex3236">
+    <meta name="description" content="Badge generator for sponsor page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>徽章生成器</title>
-    <style>
-        body, html {
-            white-space: normal;
-            word-wrap: break-word;
-            word-break: break-all;
-            font-family: Helvetica, Arial, sans-serif;
-        }
-    </style>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <script type="text/javascript">
-        const url = new URL(".", location.href).href;
-        const img = document.getElementById("preview");
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            <strong>【颜色】</strong>选一个或使用十六进制代码（无需前缀）<br>
+            <strong>【Logo】</strong>选一个或使用 <a rel="noopener" target="_blank" href="https://github.com/simple-icons/simple-icons/blob/develop/slugs.md">simple-icons</a> 甚至 Base64 图片
+        </div>
+        <form oninput="updateBadge()" onselect="updateBadge()">
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label" for="fg-color">Logo 颜色</label>
+                    <select class="form-select" id="fg-color" value="white">
+                        <option>brightgreen</option>
+                        <option>green</option>
+                        <option>yellowgreen</option>
+                        <option>yellow</option>
+                        <option>orange</option>
+                        <option>red</option>
+                        <option>blue</option>
+                        <option>lightgrey</option>
+                        <option>success</option>
+                        <option>important</option>
+                        <option>critical</option>
+                        <option>informational</option>
+                        <option>inactive</option>
+                        <option>blueviolet</option>
+                        <option>white</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="form-label" for="bg-color">背景色</label>
+                    <select class="form-select" id="bg-color" value="blue">
+                        <option>brightgreen</option>
+                        <option>green</option>
+                        <option>yellowgreen</option>
+                        <option>yellow</option>
+                        <option>orange</option>
+                        <option>red</option>
+                        <option>blue</option>
+                        <option>lightgrey</option>
+                        <option>success</option>
+                        <option>important</option>
+                        <option>critical</option>
+                        <option>informational</option>
+                        <option>inactive</option>
+                        <option>blueviolet</option>
+                        <option>white</option>
+                    </select>
+                </div>
+            </div>
 
-        function copy(btn, text) {
-            navigator.clipboard.writeText(text).then(
-                function() {
-                    console.log(btn.value)
-                    btn.value = "已复制！";
-                    btn.disabled = true;
-                    setTimeout(function() {
-                        btn.value = "复制";
-                        btn.disabled = false;
-                    }, 1000);
-                }, 
-                function() {
-                    alert("复制失败，请手动复制");
-                });
-        }
+            <div class="mb-2 row">
+                <div class="col">
+                    <label class="form-label" for="logo">Logo</label>
+                    <select class="form-select" id="logo" value="alipay">
+                        <option>alipay</option>
+                        <option>wechat</option>
+                        <option>tencentqq</option>
+                        <option>buymeacoffee</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="form-label" for="style">徽章样式</label>
+                    <select class="form-select" id="style">
+                        <option value="flat-square">扁平方块</option>
+                        <option value="flat">扁平</option>
+                        <option value="plastic">塑料</option>
+                        <option value="for-the-badge">FTB</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="text">徽章文字</label>
+                <input class="form-control" id="text" type="text" value="Sponsor me!" />
+            </div>
+        </form>
+        <div class="mb-3">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">效果预览</span>
+                <code class="form-control" id="preview"></code>
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group input-group-sm">
+                <label for="markdown" class="input-group-text">Markdown</label>
+                <input disabled type="text" class="form-control" id="markdown">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button"
+                        onClick="copy(this, document.getElementById('markdown').value)">复制</button>
+                </div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group input-group-sm">
+                <label for="html" class="input-group-text">HTML</label>
+                <input disabled type="text" class="form-control" id="html" value="awa">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button"
+                        onClick="copy(this, document.getElementById('html').value)">复制</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        function update() {
-            code_markdown = document.getElementById("markdown");
-            code_html = document.getElementById("html");
-            preview = document.getElementById("preview");
-
-            text = document.BadgeInfo.Text.value;
-            color = document.BadgeInfo.Color.value;
-            logo_color = document.BadgeInfo.LogoColor.value;
-            icon = document.BadgeInfo.Icon.value;
-            style = document.BadgeInfo.Style.value;
-
-            badge_url = encodeURI("https://img.shields.io/badge/text-color?logo=Alipay&logoColor=white&style=style_text".replace("text", text).replace("color", color).replace("Alipay", icon).replace("style_text", style).replace("white", logo_color));
-
-            code_markdown.innerText = "[![text](badge_url)](url)".replace("text", text).replace("badge_url", badge_url).replace("url", url);
-            code_html.innerText = '<a href="url"><img src="badge_url" alt="text"></a>'.replace("text", text).replace("badge_url", badge_url).replace("url", url);
-            preview.innerHTML = code_html.innerText;
-        };
-    </script>
-    <h1>徽章生成器</h1>
-    <p>快速生成一个赞助按钮，可用于 Git 项目或个人网站。</p>
-    <form name="BadgeInfo">
-        <label>样式：</label>
-        <select onChange="update()" name="Icon">
-            <option value ="alipay">支付宝</option>
-            <option value ="wechat">微信</option>
-            <option value ="tencentqq">QQ</option>
-        </select>
-        <select onChange="update()" name="Style">
-            <option value="flat-square">扁平方块</option>
-            <option value="flat">扁平</option>
-            <option value="plastic">塑料</option>
-            <option value="for-the-badge">For the Badge</option>
-        </select>
-
-        <br>
-        <label>文字：</label>
-        <input oninput="update()" type="text" name="Text" value="Sponsor me!" required />
-        <br>
-        <label>Logo 颜色：</label>
-        <input oninput="update()" type="text" name="LogoColor" value="white" required />
-        <br>
-        <label>背景颜色：</label>
-        <input oninput="update()" type="text" name="Color" value="blue" required />
-        <p>* 颜色可以是一个十六进制代码，或者是以下之一：<code>brightgreen, green, yellowgreen, yellow, orange, red, blue, lightgrey, success, important, critical, informational, inactive, blueviolet, ff69b4, 9cf, 2ea44f</code></p>
-    </form>
-    <h2>代码</h2>
-    <h3>Markdown <input type="button" value="复制" onClick="copy(this, document.getElementById('markdown').innerText)"></h3>
-    <pre id="markdown"></pre>
-    <h3>HTML <input type="button" value="复制" onClick="copy(this, document.getElementById('html').innerText)"></h3>
-    <pre id="html"></pre>
-    <h2>预览</h2>
-    <code id="preview"></code>
-    <script>
-        if (!window.navigator.onLine || location.href.startsWith("file://")) {
-            document.body.innerHTML = "<p>网页处于离线状态，请先部署到网络再使用徽章生成器！</p>";
-        } else {
-            update();
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="js/badge.js"></script>
 </body>
 </html>

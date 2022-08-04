@@ -4,21 +4,49 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+footer {
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .hidden {
     display: none;
 }
 
-.container {
-    /* height: 100%;
-    display: flex; */
-    max-width: 960px;
+#loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    background-color: #fff;
+    z-index: 99;
 }
 
-.pricing-header {
-    max-width: 700px;
+#loader {
+    z-index: 100;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 70px;
+    height: 70px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
+
+/* Safari */
+@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
 div.btn-group {
     margin: 0 auto;
@@ -26,8 +54,11 @@ div.btn-group {
     width: inherit;
 }
 
-img {
-    max-width: 120px;
+.avatar {
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 span.app-name {
@@ -36,12 +67,6 @@ span.app-name {
 
 i {
     padding-right: 5px;
-}
-
-.very-small {
-    font-size: 0.8em;
-    color: rgb(199, 199, 199);
-    margin: 0;
 }
 
 .pd0 {
@@ -53,5 +78,99 @@ a:link {
 }
 
 a:hover {
-    text-decoration: underline lightblue;
+    text-decoration: none;
+}
+
+.code-item {
+    background: #5c92ef;
+}
+
+.modal {
+    min-width: 375px;
+}
+
+.code-box {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #5c92ef;
+    width: 330px;
+}
+
+.icon-group {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.icon-group {
+    font-size: 40px;
+    line-height: 100px;
+}
+
+.icon-group i {
+    padding: 15px;
+}
+
+.icon-group .icon-alipay::before {
+    color: #00aaee;
+}
+
+.icon-group .icon-wechat::before {
+    color: #00cd0d;
+}
+
+.icon-group .icon-qq::before {
+    color: #df1f1f
+}
+
+.btn-close {
+    float: right;
+}
+
+.code-text {
+    position: relative;
+    vertical-align: top;
+    line-height: 70px;
+    font-size: 15px;
+    color: white;
+}
+
+.qrcode-border {
+    width: 230px;
+    height: 240px;
+    display: inline-grid;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-top: 60px;
+}
+
+.qrcode {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    justify-content: center;
+}
+
+.corner {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.icon-exit {
+    padding-right: 0 !important;
+}
+
+iframe {
+    height: 550px;
 }

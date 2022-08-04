@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'icons';
     src: url('../fonts/icons.eot?185fbz');
-    src: url('../fonts/icons.eot?185fbz#iefix') format('embedded-opentype'), url('../fonts/icons.ttf?185fbz') format('truetype'), url('../fonts/icons.woff?185fbz') format('woff'), url('../fonts/icons.svg?185fbz#icons') format('svg');
+    src: url('../fonts/icons.eot?185fbz#iefix') format('embedded-opentype'), url('../fonts/icons.ttf?185fbz') format('truetype'), url('../fonts/icons.woff?185fbz') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -23,16 +23,29 @@ i {
 
 .icon-qr:before {
     content: "\e900";
-}
+  }
 
 .icon-alipay:before {
-    content: "\e901";
+content: "\e901";
 }
 
 .icon-qq:before {
-    content: "\f1d6";
+content: "\f1d6";
 }
 
 .icon-wechat:before {
-    content: "\f1d7";
+content: "\f1d7";
 }
+
+.icon-badge:before {
+content: "\e935";
+}
+
+.icon-download:before {
+content: "\e9c7";
+}
+
+.icon-github:before {
+content: "\eab0";
+}
+  
