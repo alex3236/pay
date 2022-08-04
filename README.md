@@ -50,7 +50,6 @@
 
 ```html
 <!-- 设置 -->
-<!-- 设置 -->
     <title>(～￣▽￣)～</title> <!-- 页面标题 -->
     <script>
         const settings = {
@@ -91,7 +90,7 @@
 ![Image](https://i.niupic.com/images/2022/08/04/a1wE.png)
 
 ## 许可
-自 [65f6e3f](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) 许可。请勿以任何形式出售此源码。
+自 [`65f6e3f`](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [`GNU GPLv3`](https://www.gnu.org/licenses/gpl-3.0.html) 许可。请勿以任何形式出售此源码。
 
 ## 支持我
 
