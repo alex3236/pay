@@ -113,7 +113,7 @@ function loadIndex() {
     }
 
     $('#qr-btn').click(() => {
-        (!(!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#FullQRModal')).modal('show')
+        ((!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#FullQRModal')).modal('show')
 
     })
 
@@ -130,7 +130,7 @@ function loadIndex() {
 
     // 徽章生成器
     $('#badge-btn').click(() => 
-        (!(!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#BadgeModal')).modal('show')
+        ((!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#BadgeModal')).modal('show')
     )
 }
 
