@@ -47,7 +47,7 @@ function downloadURI(uri, name) {
 }
 
 function loadIndex() {
-    $("button.pay").click(() => {
+    $("button.pay").click(function () {
             generateModal($(this).val());
             $('#ItemModal').modal("show");
         }
