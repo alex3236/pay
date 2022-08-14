@@ -8,14 +8,18 @@
 
 ![Image](https://i.niupic.com/images/2022/08/04/a1wB.png)
 
-## 特点
+## :rocket: 特点
 
 - 纯前端实现，一键部署，无需安装，无需数据库
 - 免维护，无多余配置，一次修改永久使用
 - 支付软件扫码智能识别，无需手选
-- 写的很拉跨！不过不影响用！
 
-## 使用方法
+## :warning: 需要注意的地方
+
+- 无论什么原因导致网站无法正常访问，二维码将会失效。
+- 聚合收款码只应作为个人收款使用。
+
+## :robot: 部署方法
 
 ### 一键部署
 
@@ -42,38 +46,55 @@
 3. 上传至您的服务器并部署（纯静态，无需 PHP）
 4. Enjoy~
 
-## 配置选项
+## :gear: 配置选项
 
-配置项位于 `index.html` 中，列举如下。
+配置项位于 `config.js` 中，列举如下。
 
 > :warning: 请用专门的代码编辑器（如 `Notepad2` / `VS Code`）编辑代码，切忌用记事本编辑，否则可能出现中文乱码！
 
-```html
-<!-- 设置 -->
-    <title>(～￣▽￣)～</title> <!-- 页面标题 -->
-    <script>
-        const settings = {
-            avatar: "2706992599", // 头像 URL，也可为 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
-            name: "Alex3236", // 头像下的昵称
-            sign: "<strike>我很可爱，请给我钱</strike> ( •̀ ω •́ )✧", // 个性签名 (提示文字)
-            background: "#C3D7DF", // 背景颜色代码，也可为图片 URL
-        }
-        const urls = {
-            user_page: "https://github.com/alex3236", // 点击头像或名字时跳转的链接，留空或删除则不跳转
-            // 以下是收款码连接，可使用草料二维码等识别工具识别收款码获取链接
-            // 把某个参数放空或删除，则不显示对应按钮和图标
-            alipay: "https://qr.alipay.com/0?t=0", // 支付宝
-            wechat: "wxp://0", // 微信
-            qq: "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=0&u=0&n=0" // QQ
-        }
-        const tools = { // 右上角小工具按钮是否显示
-            full_qr: true, // 大二维码
-            badge_generator: true // 徽章生成器
-        }
-    </script>
+```javascript
+const basic = { // 基础设置
+    favicon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿️</text></svg>', // 页面图标
+    title: '(～￣▽￣)～', // 页面标题
+    avatar: '2706992599', // 头像 URL，也可用 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
+    name: 'Alex3236', // 头像下的昵称
+    sign: '<strike>我很可爱，请给我钱</strike> ( •̀ ω •́ )✧', // 个性签名或提示文字，可使用 HTML 格式
+    user_page: 'https://github.com/alex3236' // 点击头像或名字时跳转的链接，留空或删除则不跳转
+}
+
+const theme = { // 主题设置
+    page_bg: '#c3d7df', // 网页背景（十六进制，或图片 URL）
+    card_bg: '#ffffffcc', // 卡片背景色（十六进制，可带透明度，不能是 URL）
+    qrcode_bg: '#eaeffde6', // 二维码背景色（十六进制，可带透明度，不能是 URL）
+    qrcode_fg: '#335eea' // 二维码颜色（十六进制，可带透明度，不能是 URL）
+}
+
+const tools = { // 右上角小工具设置
+    dl_btn: true, // 二维码下载
+    badge_generator: true // 徽章生成器
+}
+
+const urls = [ // 付款方式列表
+    {
+        name: '支付宝', // 名称
+        ua: 'Alipay', // User-Agent 正则表达式
+        addr: 'https://qr.alipay.com/fkx19308fmhdodse4a7vu41?t=1638630319334' // 收款码 URL
+    },
+    {
+        name: '微信',
+        ua: 'MicroMessenger\/',
+        addr: 'wxp://f2f0ztGfw9u3WagBbDHikaGEZuDB_d9QsPzjcn1YWu_hzW8'
+    },
+    {
+        name: 'QQ', 
+        ua: 'QQ\/',
+        addr: 'https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=CAEQ19vligoY3K2tjQY%3D_xxx_sign&u=2706992599&n=Alex3236'
+    }
+]
+
 ```
 
-## 小工具
+## :wrench: 小工具
 
 为方便使用提供了一些小工具，按钮位于网页右上角。
 
@@ -83,11 +104,19 @@
 
 ![Image](https://i.niupic.com/images/2022/08/04/a1wU.png)
 
-### 大二维码
+### 下载卡片
 
-大二维码，可以直接给他人扫描。网站挂了也会跟着失效。
+将卡片以 PNG 格式下载到本地，供他人扫描。
 
-![Image](https://i.niupic.com/images/2022/08/04/a1wE.png)
+## :question: 常见问题 (WIP)
+
+<details>
+  <summary>如何修改付款方式？</summary>
+  
+ - 对于普通用户，只需更改默认的支付宝、微信、QQ 的收款码 URL。如不需要其中某个支付方式，删除对应的 dict 即可。
+ - 若想添加其他收款方式，按格式填写即可（UA 可用 [MyBrowser](https://github.com/alex3236/MyBrowser) 提取）。
+
+</details>
 
 ## 许可
 自 [`65f6e3f`](https://github.com/alex3236/pay/commit/65f6e3f74e26e766b611b2d36f42d6841ad5d806) 起，此仓库使用 [`GNU GPLv3`](https://www.gnu.org/licenses/gpl-3.0.html) 许可。请勿以任何形式出售此源码。

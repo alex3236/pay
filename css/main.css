@@ -4,127 +4,43 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'STXihei', 'Microsoft YaHei', 'Apple LiGothic Medium', sans-serif;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     -khtml-user-select: none;
     user-select: none;
+    min-height: 630px;
+    min-width: 330px;
 }
 
 footer {
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: 'Ubuntu Mono', 'Lucida Console', 'Courier New', monospace;
 }
 
 .hidden {
     display: none;
 }
 
-#loading {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    background-color: #fff;
-    z-index: 99;
-}
-
-#loader {
-    z-index: 100;
-    border: 10px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 10px solid #3498db;
-    width: 70px;
-    height: 70px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-
-div.btn-group {
-    margin: 0 auto;
-    text-align: center;
-    width: inherit;
-}
+/* Loading Screen */
+#loading{position:fixed;display:flex;justify-content:center;align-items:center;width:100%;height:100%;top:0;left:0;opacity:1;background-color:#fff;z-index:99}#loader{z-index:100;border:10px solid #f3f3f3;border-radius:50%;border-top:10px solid #3498db;width:70px;height:70px;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
 .avatar {
-    width: 120px;
-    height: 120px;
     background-repeat: no-repeat;
     background-size: contain;
+    width: 100px;
+    height: 100px;
 }
 
-span.app-name {
-    padding: 0px;
-}
-
-i {
-    padding-right: 5px;
-}
-
-.pd0 {
-    padding-right: 0 !important;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-.code-item {
-    background: #5c92ef;
+.main {
+    max-width: 450px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 35px 35px 25px 35px;
+    border-radius: 1.2rem;
 }
 
 .modal {
     min-width: 375px;
-}
-
-.code-box {
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid #5c92ef;
-    width: 330px;
-}
-
-.icon-group {
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-}
-
-.icon-group {
-    font-size: 40px;
-    line-height: 100px;
-}
-
-.icon-group i {
-    padding: 15px;
-}
-
-.icon-group .icon-alipay::before {
-    color: #00aaee;
-}
-
-.icon-group .icon-wechat::before {
-    color: #00cd0d;
-}
-
-.icon-group .icon-qq::before {
-    color: #df1f1f
-}
-
-.btn-close {
-    float: right;
 }
 
 .code-text {
@@ -135,27 +51,24 @@ a:hover {
     color: white;
 }
 
-.qrcode-border {
-    width: 230px;
-    height: 240px;
-    display: inline-grid;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin-top: 60px;
-}
-
 .qrcode {
-    width: 200px;
-    height: 200px;
+    height: a;
+    padding: 10% 10% 9% 10%;
+    background-color: rgba(234, 239, 253, 0.9);
+    border-radius: 1.2rem;
     margin: auto;
     justify-content: center;
 }
 
+.qrcode > img, canvas {
+    width: 100%;
+    height: 100%;
+}
+
 .corner {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 1%;
+    right: 1%;
 }
 
 .btn-circle {
@@ -165,10 +78,6 @@ a:hover {
     text-align: center;
     padding: 0;
     border-radius: 50%;
-}
-
-.icon-exit {
-    padding-right: 0 !important;
 }
 
 iframe {

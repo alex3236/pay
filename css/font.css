@@ -21,22 +21,6 @@ i {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-qr:before {
-    content: "\e900";
-  }
-
-.icon-alipay:before {
-content: "\e901";
-}
-
-.icon-qq:before {
-content: "\f1d6";
-}
-
-.icon-wechat:before {
-content: "\f1d7";
-}
-
 .icon-badge:before {
 content: "\e935";
 }

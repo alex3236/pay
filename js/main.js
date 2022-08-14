@@ -3,42 +3,51 @@ isQQ = (s) => /^\s*[.0-9]{5,11}\s*$/.test(s);
 isGithub = (s) => /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(s);
 isColor = (s) => /^#[a-fA-F0-9]{6}$/.test(s);
 isEmpty = (s) => !(typeof s == 'string' && s.length > 0);
+var is_offline = (!window.navigator.onLine || /^(file:\/*|(https?:)?(\/\/)?(localhost|127.))/.test(location.href));
+var payment_app;
+var payment_desc = (function () { var n = []; for (p in urls) { n.push(urls[p].name) } return n; }.call(this));
+printConsoleInfomation(payment_desc);
 
-function generateModal(val) {
-    $(".app-name").css("display", "none");
-
-    if (val == "alipay") {
-        $("#alipay-name").css({ display: "inline-block" });
-        makeCode(urls.alipay);
-    } else if (val == "wechat") {
-        $("#wechat-name").css({ display: "inline-block" });
-        makeCode(urls.wechat);
-    } else if (val == "qq") {
-        $("#qq-name").css({ display: "inline-block" });
-        makeCode(urls.qq);
-    }
-    $("#qrcode canvas").remove();
-}
-
-function makeCode(url) {
-    $('#qrcode-canvas').children().remove()
-    $("#qrcode img").remove();
-    $("#qrcode-canvas").qrcode({ width: 300, height: 300, text: url })
+function make_code(url) {
+    $('#qrcode-canvas').qrcode({
+        width: 250,
+        height: 250,
+        background: theme.qrcode_bg,
+        foreground: theme.qrcode_fg,
+        text: url
+    });
     var img = new Image();
-    img.src = $("#qrcode-canvas canvas")[0].toDataURL("image/png");
-    img.className = "qrcode"
-    $("#qrcode").append(img);
+    img.src = $('#qrcode-canvas canvas')[0].toDataURL('image/png');
+    $('#qrcode').append(img);
 }
 
-function printDiv(div) {
-    html2canvas((div)).then(canvas => {
+function make_code_if_online(url) {
+    $('#qrcode-canvas').children().remove();
+    $('#qrcode img').remove();
+    if (is_offline) {
+        $('#qrcode').html('<strong>网页离线<br>请先部署到服务器</strong>');
+        $('#desc').hide();
+        $('#badge-btn').hide();
+        $('#dl-btn').hide();
+    } else {
+        make_code(url);
+    }
+}
+
+function print_div(div) {
+    html2canvas(div, {
+        logging: true,
+        letterRendering: 1,
+        allowTaint: true,
+        useCORS: true
+    }).then(canvas => {
         var myImage = canvas.toDataURL();
-        downloadURI(myImage, "QR.png");
+        downloadURI(myImage, 'QR.png');
     });
 }
 
 function downloadURI(uri, name) {
-    var link = document.createElement("a");
+    var link = document.createElement('a');
     link.download = name;
     link.href = uri;
     document.body.appendChild(link);
@@ -46,98 +55,90 @@ function downloadURI(uri, name) {
     document.body.removeChild(link);
 }
 
-function loadIndex() {
-    $("button.pay").click(function () {
-            generateModal($(this).val());
-            $('#ItemModal').modal("show");
-        }
+function printConsoleInfomation(payment_desc) {
+    console.log(
+        atob('CiAgICBfX18KICAgIC8gXyBcX19fIF9fXyBfXwogICAvIF9fXy8gXyBgLyAvLyAvCiAgL18vICAgXF8sXy9cXywgLwogICAgICAgICAgICAvX19fLwoK'),
+        '一个简单的聚合收款码 | ⚠️️仅供个人收款使用\n', 'https://github.com/alex3236/pay\n\n',
+        '已启用支付方式：' + payment_desc.join(', '), '\n\n'
     );
+}
 
-    $('#user').click(() => {
-        if (!isEmpty(urls.user_page)) {
-            window.open(urls.user_page, '_blank')
-        }
-    })
-
-    if (!tools.badge_generator) {
-        $('#badge-btn').hide();
-    }
-
-    // 支付图标
-    if (isEmpty(urls.alipay)) {
-        $(".alipay").remove();
-    }
-    if (isEmpty(urls.wechat)) {
-        $(".wechat").remove();
-    }
-    if (isEmpty(urls.qq)) {
-        $(".qq").remove();
-    }
-
-    // 头像
-    if (isQQ(settings.avatar)) {
-        avatar_url = "http://q1.qlogo.cn/g?b=qq&nk=" + settings.avatar + "&s=640";
-    } else if (isGithub(settings.avatar)) {
-        avatar_url = "https://avatars.githubusercontent.com/" + settings.avatar.substr(1) + "?v=3";
-    } else {
-        avatar_url = settings.avatar;
-    }
-
-    $('#avatar').css('background-image', "url(" + avatar_url + "), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEa8AABGvAff9S4QAAAAMSURBVBhXY1iyeTcABBECEzIl58wAAAAASUVORK5CYII=')");
-
-    //背景
-    $("body").css("background", isColor(settings.background) ? settings.background : "url(" + settings.background + ")")
+function init() {
+    // 标题和 favicon
+    if (!isEmpty(basic.title)) {document.title = basic.title}
+    if (!isEmpty(basic.favicon)) {$('link[rel~="icon"]')[0].href = basic.favicon}
 
     // 支付 APP 识别
-    var have_matched = true;
-    if (navigator.userAgent.match(/Alipay/i)) {
-        generateModal("alipay"); // 支付宝
-    } else if (navigator.userAgent.match(/MicroMessenger\//i)) {
-        generateModal("wechat"); // 微信
-    } else if (navigator.userAgent.match(/QQ\//i)) {
-        generateModal("qq"); // QQ
+    for (p in urls) {
+        p = urls[p];
+        if (navigator.userAgent.match(new RegExp(p.ua, 'i'))) {
+            make_code_if_online(p.addr);
+            payment_app = p.name;
+        }
+    }
+    
+    // 扫码提示
+    if (payment_app) {
+        $('#desc').children().text('长按识别以使用 ' + payment_app + ' 付款');
     } else {
-        have_matched = false; // 其它
+        $('#desc').children().text(payment_desc.join(' / ') + ' 扫码付款');
+        make_code_if_online(new URL('.', window.location.href).href);
     }
-    if (have_matched) {
-        $("#scan-tip").text("可直接长按识别");
-        $('#ItemModal').modal({ backdrop: 'static', keyboard: false });
-        $('#ItemModal').modal('show');
+
+    // 主题设置
+    $('body').css('background', isColor(theme.page_bg) ? theme.page_bg : 'url(' + theme.page_bg + ')');
+    $('.main').css('background-color', theme.card_bg);
+    $('#qrcode').css('background-color', theme.qrcode_bg);
+    $('#qrcode').css('color', theme.qrcode_fg);
+
+    // 头像
+    if (isEmpty(basic.avatar)) {
+        $('#avatar').remove();
     } else {
-        $("#scan-tip").text("手机用户可截图后打开相应应用扫描");
+        if (isQQ(basic.avatar)) {
+            avatar_url = 'https://images.weserv.nl/?url=http%3A%2F%2Fq1.qlogo.cn%2Fg%3Fb%3Dqq%26nk%3D' + basic.avatar + '%26s%3D160';
+        } else if (isGithub(basic.avatar)) {
+            avatar_url = 'https://images.weserv.nl/?url=https://avatars.githubusercontent.com/' + basic.avatar.substring(1) + '%3Fv%3D3';
+        } else {
+            avatar_url = basic.avatar;
+        }
+        $('#avatar').css('background-image', 'url(' + avatar_url + "), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEa8AABGvAff9S4QAAAAMSURBVBhXY1iyeTcABBECEzIl58wAAAAASUVORK5CYII=')");
     }
 
-    // 大二维码
-    if (!tools.full_qr) {
-        $("#qr-btn").hide()
+    // 小工具
+    if (!tools.badge_generator || payment_app) {
+        $('#badge-btn').hide();
+    }
+    if (!tools.dl_btn || payment_app) {
+        $('#dl-btn').hide();
     }
 
-    $('#qr-btn').click(() => {
-        ((!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#FullQRModal')).modal('show')
-
+    // 头像点击跳转
+    $('#user').click(() => {
+        if (!isEmpty(basic.user_page) && !payment_app) {
+            window.open(basic.user_page, '_blank');
+        }
     })
 
-    $('#dl-qr').click(() => {
-        printDiv($('#code-box')[0])
-    })
-
-    var url = new URL(".", window.location.href).href;
-    $("#fullqrcode").qrcode({
-        width: 200,
-        height: 200,
-        text: url
+    // 下载按钮
+    $('#dl-btn').click(() => {
+        print_div($('#main')[0]);
     })
 
     // 徽章生成器
-    $('#badge-btn').click(() => 
-        ((!window.navigator.onLine || location.href.startsWith("file://")) ? $('#OfflineModal') : $('#BadgeModal')).modal('show')
-    )
+    $('#badge-btn').click(() => {
+            var ins = $('#badge-iframe');
+            if (ins.children().length == 0) {
+                ins.prepend('<iframe class="w-100" src="badge.html"></iframe>');
+            }
+            $('#BadgeModal').modal('show');
+    })
 }
 
 window.onload = () => {
-    loadIndex();
+    init();
     $('#loading').fadeOut(500, () => {
-        $('#loading').remove()
+        $('#loading').remove();
     });
     $('footer').show();
 }
