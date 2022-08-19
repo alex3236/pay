@@ -4,11 +4,12 @@ isGithub = (s) => /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(s);
 isColor = (s) => /^#[a-fA-F0-9]{6}$/.test(s);
 isEmpty = (s) => !(typeof s == 'string' && s.length > 0);
 var is_offline = (!window.navigator.onLine || /^(file:\/*|(https?:)?(\/\/)?(localhost|127.))/.test(location.href));
+var payment_url;
 var payment_app;
 var payment_desc = (function () { var n = []; for (p in urls) { n.push(urls[p].name) } return n; }.call(this));
 printConsoleInfomation(payment_desc);
 
-function make_code(url) {
+function make_code(url, desc) {
     $('#qrcode-canvas').qrcode({
         width: 250,
         height: 250,
@@ -19,9 +20,10 @@ function make_code(url) {
     var img = new Image();
     img.src = $('#qrcode-canvas canvas')[0].toDataURL('image/png');
     $('#qrcode').append(img);
+    $('#desc').children().html(desc);
 }
 
-function make_code_if_online(url) {
+function make_code_if_online(url, desc='长按识别以使用 ' + payment_app + ' 付款') {
     $('#qrcode-canvas').children().remove();
     $('#qrcode img').remove();
     if (is_offline) {
@@ -30,8 +32,12 @@ function make_code_if_online(url) {
         $('#badge-btn').hide();
         $('#dl-btn').hide();
     } else {
-        make_code(url);
+        make_code(url, desc);
     }
+}
+
+function make_full_code(desc) {
+    make_code_if_online(new URL('.', window.location.href).href, desc);
 }
 
 function print_div(div) {
@@ -72,17 +78,15 @@ function init() {
     for (p in urls) {
         p = urls[p];
         if (navigator.userAgent.match(new RegExp(p.ua, 'i'))) {
-            make_code_if_online(p.addr);
+            payment_url = p.addr;
             payment_app = p.name;
+            make_code_if_online(p.addr);
         }
     }
-    
-    // 扫码提示
-    if (payment_app) {
-        $('#desc').children().text('长按识别以使用 ' + payment_app + ' 付款');
-    } else {
-        $('#desc').children().text(payment_desc.join(' / ') + ' 扫码付款');
-        make_code_if_online(new URL('.', window.location.href).href);
+
+    if (!payment_app) {
+        $('#switch-btn').hide();
+        make_full_code(payment_desc.join(' / ') + ' 扫码付款');
     }
 
     // 主题设置
@@ -112,6 +116,19 @@ function init() {
     if (!tools.dl_btn || payment_app) {
         $('#dl-btn').hide();
     }
+    
+    // 付款方式切换按钮
+    $('#switch-btn').click(function () {
+        if ($(this).prop('name') == 'payment') {
+            $(this).prop('name', 'full');
+            $(this).html('<i class="icon icon-loop"></i>使用' + payment_app + '付款');
+            make_full_code('截图后用 ' + payment_desc.join(' / ') + ' 扫码付款');
+        } else {
+            $(this).prop('name', 'payment');
+            $(this).html('<i class="icon icon-loop"></i>使用其他付款方式');
+            make_code_if_online(payment_url);
+        }
+    })
 
     // 头像点击跳转
     $('#user').click(() => {

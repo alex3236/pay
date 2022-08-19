@@ -80,6 +80,15 @@ footer {
     border-radius: 50%;
 }
 
+.btn-switch {
+    padding: .30em 1em;
+    font-size: .70em;
+}
+
+.btn-switch > i {
+    padding-right: 5px;
+}
+
 iframe {
     height: 550px;
 }

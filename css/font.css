@@ -22,14 +22,18 @@ i {
 }
 
 .icon-badge:before {
-content: "\e935";
+    content: "\e935";
 }
 
 .icon-download:before {
-content: "\e9c7";
+    content: "\e9c7";
 }
 
 .icon-github:before {
-content: "\eab0";
+    content: "\eab0";
+}
+
+.icon-loop:before {
+    content: "\ea2e";
 }
   
