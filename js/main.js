@@ -3,6 +3,7 @@ isQQ = (s) => /^\s*[.0-9]{5,11}\s*$/.test(s);
 isGithub = (s) => /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(s);
 isColor = (s) => /^#[a-fA-F0-9]{6}$/.test(s);
 isEmpty = (s) => !(typeof s == 'string' && s.length > 0);
+isHTTP = (s) => /^https?:\/\//.test(s);
 var is_offline = (!window.navigator.onLine || /^(file:\/*|(https?:)?(\/\/)?(localhost|127.))/.test(location.href));
 var payment_url;
 var payment_app;
@@ -80,7 +81,12 @@ function init() {
         if (navigator.userAgent.match(new RegExp(p.ua, 'i'))) {
             payment_url = p.addr;
             payment_app = p.name;
-            make_code_if_online(p.addr);
+            if (isHTTP(payment_url) && basic.uri_redirect) {
+                window.location = payment_url;
+                return;
+            } else {
+                make_code_if_online(p.addr);
+            }
         }
     }
 
