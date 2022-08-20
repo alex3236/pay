@@ -1,13 +1,13 @@
 // 配置文件
 
 const basic = { // 基础设置
-    favicon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿️</text></svg>', // 页面图标
+    favicon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>', // 页面图标
     title: '(～￣▽￣)～', // 页面标题
-    avatar: '2706992599', // 头像 URL，也可用 QQ 号 (e.g. 2706992599) 或 Github 用户名 (e.g. @alex3236)
-    name: 'Alex3236', // 头像下的昵称
-    sign: '<strike>我很可爱，请给我钱</strike> ( •̀ ω •́ )✧', // 个性签名或提示文字，可使用 HTML 格式
-    user_page: 'https://github.com/alex3236', // 点击头像或名字时跳转的链接，留空或删除则不跳转
-    footer: '', // 页脚文字，可使用 HTML 格式
+    avatar: '@ghost', // 头像 URL，也可用 QQ 号 (e.g. 10000) 或 Github 用户名 (e.g. @alex3236)
+    name: 'Ghost', // 头像下的昵称
+    sign: '个性签名或者提示文字 ( •̀ ω •́ )✧', // 个性签名或提示文字，可使用 HTML 格式
+    user_page: 'https://github.com/ghost', // 点击头像或名字时跳转的链接，留空或删除则不跳转
+    footer: '这是一个页脚', // 页脚文字，可使用 HTML 格式
     uri_redirect: false // 若收款码 URL 是网址，是否直接跳转而不显示二维码
 }
 
@@ -27,16 +27,16 @@ const urls = [ // 付款方式列表
     {
         name: '支付宝', // 名称
         ua: 'Alipay', // User-Agent 正则表达式
-        addr: 'https://qr.alipay.com/fkx19308fmhdodse4a7vu41?t=1638630319334' // 收款码 URL
+        addr: 'https://qr.alipay.com/awa' // 收款码 URL
     },
     {
         name: '微信',
         ua: 'MicroMessenger\/',
-        addr: 'wxp://f2f0ztGfw9u3WagBbDHikaGEZuDB_d9QsPzjcn1YWu_hzW8'
+        addr: 'wxp://awa'
     },
     {
         name: 'QQ', 
         ua: 'QQ\/',
-        addr: 'https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=CAEQ19vligoY3K2tjQY%3D_xxx_sign&u=2706992599&n=Alex3236'
+        addr: 'https://i.qianbao.qq.com/wallet/sqrcode.htm?awa=awa'
     }
 ]
