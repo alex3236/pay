@@ -20,6 +20,7 @@ function make_code(url, desc) {
     });
     var img = new Image();
     img.src = $('#qrcode-canvas canvas')[0].toDataURL('image/png');
+    img.alt = "QR Code"
     $('#qrcode').append(img);
     $('#desc').children().html(desc);
 }
