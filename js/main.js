@@ -1,6 +1,4 @@
 // 正则匹配器
-isQQ = (s) => /^\s*[.0-9]{5,11}\s*$/.test(s);
-isGithub = (s) => /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(s);
 isColor = (s) => /^#[a-fA-F0-9]{6}$/.test(s);
 isEmpty = (s) => !(typeof s == 'string' && s.length > 0);
 isHTTP = (s) => /^https?:\/\//.test(s);
@@ -106,14 +104,7 @@ function init() {
     if (isEmpty(basic.avatar)) {
         $('#avatar').remove();
     } else {
-        if (isQQ(basic.avatar)) {
-            avatar_url = 'https://images.weserv.nl/?url=http%3A%2F%2Fq1.qlogo.cn%2Fg%3Fb%3Dqq%26nk%3D' + basic.avatar + '%26s%3D160';
-        } else if (isGithub(basic.avatar)) {
-            avatar_url = 'https://images.weserv.nl/?url=https://avatars.githubusercontent.com/' + basic.avatar.substring(1) + '%3Fv%3D3';
-        } else {
-            avatar_url = basic.avatar;
-        }
-        $('#avatar').css('background-image', 'url(' + avatar_url + "), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEa8AABGvAff9S4QAAAAMSURBVBhXY1iyeTcABBECEzIl58wAAAAASUVORK5CYII=')");
+        $('#avatar').css('background-image', 'url(' + basic.avatar + "), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEa8AABGvAff9S4QAAAAMSURBVBhXY1iyeTcABBECEzIl58wAAAAASUVORK5CYII=')");
     }
 
     // 小工具
