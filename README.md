@@ -1,3 +1,7 @@
+> ❌ 腾讯系应用不再允许长按扫描付款二维码！本项目寿终正寝了（
+
+<details>
+
 <img align="right" width="375" height="667" src="https://s2.loli.net/2022/10/02/WNe5Fc9SfXaYDdI.png">
 
 # Pay
@@ -24,3 +28,5 @@
 ## 🌟 支持我
 
 制作不易，如果喜欢请给个星星，或扫码支持我~
+
+</details>
