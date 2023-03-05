@@ -33,10 +33,5 @@ const urls = [ // 付款方式列表
         name: '微信',
         ua: 'MicroMessenger\/',
         img: 'wechat.png' // 使用 img 而非 addr 参数以使用小程序码
-    },
-    {
-        name: 'QQ', 
-        ua: 'QQ\/',
-        addr: 'https://i.qianbao.qq.com/wallet/sqrcode.htm?awa=awa'
     }
 ]
