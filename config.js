@@ -33,10 +33,5 @@ const urls = [ // 付款方式列表
         name: '微信',
         ua: 'MicroMessenger\/',
         img: 'wechat.png'
-    },
-    {
-        name: 'QQ', 
-        ua: 'QQ\/',
-        addr: 'https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&f=wallet&a=1&ac=CAEQ19vligoY3K2tjQY%3D_xxx_sign&u=2706992599&n=Alex3236'
     }
 ]
