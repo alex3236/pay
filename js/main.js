@@ -8,22 +8,28 @@ var payment_app;
 var payment_desc = (function () { var n = []; for (p in urls) { n.push(urls[p].name) } return n; }.call(this));
 printConsoleInfomation(payment_desc);
 
-function make_code(url, desc) {
-    $('#qrcode-canvas').qrcode({
-        width: 250,
-        height: 250,
-        background: theme.qrcode_bg,
-        foreground: theme.qrcode_fg,
-        text: url
-    });
+function make_code(type, url, desc) {
     var img = new Image();
-    img.src = $('#qrcode-canvas canvas')[0].toDataURL('image/png');
-    img.alt = "QR Code"
+    if (type == 'qr') {
+        $('#qrcode-canvas').qrcode({
+            width: 250,
+            height: 250,
+            background: theme.qrcode_bg,
+            foreground: theme.qrcode_fg,
+            text: url
+        });
+        img.src = $('#qrcode-canvas canvas')[0].toDataURL('image/png');
+    } else if (type == 'img') [
+        tailor(url, theme.qrcode_fg,(base64) => {
+            img.src = base64;
+        })
+    ]
+    img.alt = "QR Code";
     $('#qrcode').append(img);
     $('#desc').children().html(desc);
 }
 
-function make_code_if_online(url, desc='长按识别以使用 ' + payment_app + ' 付款') {
+function make_code_if_online(url, desc) {
     $('#qrcode-canvas').children().remove();
     $('#qrcode img').remove();
     if (is_offline) {
@@ -32,7 +38,7 @@ function make_code_if_online(url, desc='长按识别以使用 ' + payment_app + 
         $('#badge-btn').hide();
         $('#dl-btn').hide();
     } else {
-        make_code(url, desc);
+        make_code('qr', url, desc);
     }
 }
 
@@ -78,13 +84,19 @@ function init() {
     for (p in urls) {
         p = urls[p];
         if (navigator.userAgent.match(new RegExp(p.ua, 'i'))) {
-            payment_url = p.addr;
             payment_app = p.name;
-            if (isHTTP(payment_url) && basic.uri_redirect) {
-                window.location = payment_url;
-                return;
-            } else {
-                make_code_if_online(p.addr);
+            desc = '长按识别以使用 ' + payment_app + ' 付款';
+            if (typeof p.addr !== 'undefined') {
+                payment_url = p.addr;
+                if (isHTTP(payment_url) && basic.uri_redirect) {
+                    window.location = payment_url;
+                    return;
+                } else {
+                    make_code_if_online(p.addr, desc);
+                }
+            }
+            if (typeof p.img !== 'undefined') {
+                make_code('img', p.img, desc);
             }
         }
     }
