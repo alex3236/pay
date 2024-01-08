@@ -6,7 +6,7 @@ const basic = { // 基础设置
     avatar: 'https://gravatar.loli.net/avatar/', // 头像 URL
     name: '这是一个昵称！', // 头像下的昵称
     sign: '个性签名或者提示文字 ( •̀ ω •́ )✧', // 个性签名或提示文字，可使用 HTML 格式
-    user_page: 'https://github.com/ghost', // 点击头像或名字时跳转的链接，留空或删除则不跳转
+    user_page: 'https://github.com/ghost', // 非支付软件点击头像或名字时跳转链接。留空或删除则不跳转
     footer: '这是一个页脚！', // 页脚文字，可使用 HTML 格式
     uri_redirect: false // 若收款码 URL 是网址，是否直接跳转而不显示二维码
 }
@@ -32,6 +32,6 @@ const urls = [ // 付款方式列表
     {
         name: '微信',
         ua: 'MicroMessenger\/',
-        img: 'wechat.png' // 使用 img 而非 addr 参数以使用小程序码
+        img: 'wechat.png' // 使用 img 而非 addr 参数以使用赞赏码
     }
 ]

@@ -8,7 +8,16 @@ var payment_app;
 var payment_desc = (function () { var n = []; for (p in urls) { n.push(urls[p].name) } return n; }.call(this));
 printConsoleInfomation(payment_desc);
 
-function make_code(type, url, desc) {
+function make_code(url, desc, type='qr') {
+    if (is_offline) {
+        $('#qrcode').html('<strong>网页离线<br>请先部署到服务器</strong>');
+        $('#desc').hide();
+        $('#badge-btn').hide();
+        $('#dl-btn').hide();
+        return;
+    }
+    $('#qrcode-canvas').children().remove();
+    $('#qrcode img').remove();
     var img = new Image();
     if (type == 'qr') {
         $('#qrcode-canvas').qrcode({
@@ -29,21 +38,8 @@ function make_code(type, url, desc) {
     $('#desc').children().html(desc);
 }
 
-function make_code_if_online(url, desc) {
-    $('#qrcode-canvas').children().remove();
-    $('#qrcode img').remove();
-    if (is_offline) {
-        $('#qrcode').html('<strong>网页离线<br>请先部署到服务器</strong>');
-        $('#desc').hide();
-        $('#badge-btn').hide();
-        $('#dl-btn').hide();
-    } else {
-        make_code('qr', url, desc);
-    }
-}
-
 function make_full_code(desc) {
-    make_code_if_online(new URL('.', window.location.href).href, desc);
+    make_code(new URL('.', window.location.href).href, desc);
 }
 
 function print_div(div) {
@@ -75,12 +71,7 @@ function printConsoleInfomation(payment_desc) {
     );
 }
 
-function init() {
-    // 标题和 favicon
-    if (!isEmpty(basic.title)) {document.title = basic.title}
-    if (!isEmpty(basic.favicon)) {$('link[rel~="icon"]')[0].href = basic.favicon}
-
-    // 支付 APP 识别
+function make_code_by_app() {
     for (p in urls) {
         p = urls[p];
         if (navigator.userAgent.match(new RegExp(p.ua, 'i'))) {
@@ -91,15 +82,23 @@ function init() {
                 if (isHTTP(payment_url) && basic.uri_redirect) {
                     window.location = payment_url;
                     return;
-                } else {
-                    make_code_if_online(p.addr, desc);
                 }
+                make_code(p.addr, desc);
             }
             if (typeof p.img !== 'undefined') {
-                make_code('img', p.img, desc);
+                make_code(p.img, desc, 'img');
             }
         }
     }
+}
+
+function init() {
+    // 标题和 favicon
+    if (!isEmpty(basic.title)) {document.title = basic.title}
+    if (!isEmpty(basic.favicon)) {$('link[rel~="icon"]')[0].href = basic.favicon}
+
+    // 支付 APP 识别
+    make_code_by_app();
 
     if (!payment_app) {
         $('#switch-btn').hide();
@@ -136,7 +135,7 @@ function init() {
         } else {
             $(this).prop('name', 'payment');
             $(this).html('<i class="icon icon-loop"></i>使用其他付款方式');
-            make_code_if_online(payment_url);
+            make_code_by_app();
         }
     })
 
