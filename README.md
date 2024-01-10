@@ -1,4 +1,4 @@
-<img align="right" width="375" height="667" src="https://s2.loli.net/2022/10/02/WNe5Fc9SfXaYDdI.png">
+<img align="right" width="342" height="543" src="https://github.com/alex3236/pay/assets/45303195/746d110d-c1a6-4d71-9aac-72080324ffa2">
 
 # Pay
 
