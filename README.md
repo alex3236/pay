@@ -1,4 +1,4 @@
-<img align="right" width="375" height="667" src="https://s2.loli.net/2022/10/02/WNe5Fc9SfXaYDdI.png">
+<img align="right" width="342" height="543" src="https://github.com/alex3236/pay/assets/45303195/746d110d-c1a6-4d71-9aac-72080324ffa2">
 
 # Pay
 
@@ -8,7 +8,7 @@
 
 ## 🚀 特点
 
-- 纯前端实现，一键部署，无需安装，无需数据库
+- 纯前端实现，快速部署，不用安装，不需要特殊环境
 - 免维护，无多余配置，一次修改永久使用
 - 代码轻量，数据量小，飞速加载 
 - 支付软件智能识别，且允许切换支付方式
