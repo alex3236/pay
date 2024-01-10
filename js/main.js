@@ -108,10 +108,8 @@ function init() {
     // 主题设置
     if (isColor(theme.page_bg)) {
         $('body').css('background', theme.page_bg);
-    } else if (isHTTP(theme.page_bg)) {
-        $('body').css('background-image', 'url(' + theme.page_bg + ')');
     } else {
-        $('body').css('background-image', theme.page_bg);
+        $('body').css('background-image', 'url(' + theme.page_bg + ')');
     }
     $('.main').css('background-color', theme.card_bg);
     $('#qrcode').css('background-color', theme.qrcode_bg);
