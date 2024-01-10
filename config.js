@@ -12,7 +12,7 @@ const basic = { // 基础设置
 }
 
 const theme = { // 主题设置
-    page_bg: '#d7f3f8', // 网页背景（十六进制，或图片 URL）
+    page_bg: 'background.png', // 网页背景（十六进制，或图片 URL）
     card_bg: '#ffffffcc', // 卡片背景色（十六进制，可带透明度，不能是 URL）
     qrcode_bg: '#eaeffde6', // 二维码背景色（十六进制，可带透明度，不能是 URL）
     qrcode_fg: '#335eea' // 二维码颜色（十六进制，可带透明度，不能是 URL）
