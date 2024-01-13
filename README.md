@@ -20,9 +20,11 @@
 参见 [`使用教程`](docs/tutorial.md)
 
 ## ©️ 许可
-使用 [`GNU GPLv3`](https://www.gnu.org/licenses/gpl-3.0.html) 许可。
 
-**请勿以任何形式贩卖此项目。**
+>[!CAUTION]
+> **请勿以任何形式贩卖此项目。**
+
+使用 [`GNU GPLv3`](https://www.gnu.org/licenses/gpl-3.0.html) 许可。  
 
 ## 🌟 支持我
 
