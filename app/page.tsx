@@ -71,6 +71,12 @@ export default function Main() {
             if (contents.title) {
                 document.title = contents.title;
             }
+            console.log(
+                atob(
+                    'CiAgICBfX18KICAgIC8gXyBcX19fIF9fXyBfXwogICAvIF9fXy8gXyBgLyAvLyAvCiAgL18vICAgXF8sXy9cXywgLwogICAgICAgICAgICAvX19fLwoK'
+                ),
+                'https://github.com/alex3236/pay'
+            );
         }
     }, [contents.title, mounted]);
 

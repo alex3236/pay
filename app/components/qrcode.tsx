@@ -13,7 +13,6 @@ function parseBigImage(image: JimpInstance, scale: number): JimpInstance {
     const h = image.height * scale;
     const x = image.width - w;
     const y = image.height - h;
-    console.log(image.width, scale, x, y, w, h);
     image.scan(x, y, w, h, (x, y) => {
         image.setPixelColor(0x00000000, x, y);
     });
@@ -89,7 +88,6 @@ class DynamicQRCode extends Component<QRCodeProps> {
 
     componentDidUpdate(prevProps: QRCodeProps, prevState: QRCodeState) {
         if (!deepEqual(this.state.data, prevState.data) || !deepEqual(this.props, prevProps)) {
-            console.log('data changed');
             this.setState(
                 {
                     editMode: this.props.editmode === 'true',
@@ -128,8 +126,6 @@ class DynamicQRCode extends Component<QRCodeProps> {
     }
 
     async generateQRCode() {
-        console.log(this.state.editMode, this.state.childRatio);
-
         const main = await this.getQRCode(
             this.state.data.main,
             'H',

@@ -88,7 +88,7 @@ export const saveStorageAsFile = () => {
             return acc;
         }, []);
     const envContent = envVariables.join('\n');
-    FileSaver.saveAs(new Blob([envContent], { type: 'text/plain' }), '_env.txt');
+    FileSaver.saveAs(new Blob([envContent], { type: 'text/plain' }), 'saved.env');
 };
 
 export const getImageInput = (): Promise<File | null> => {
