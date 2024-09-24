@@ -171,7 +171,7 @@ export default function Main() {
                             id="desc"
                             onChange={handleEditable}
                             tagName="p"
-                            className="text-gray-500 text-md mx-4"
+                            className="text-gray-600 text-md mx-4"
                             disabled={!options.editMode}
                             html={getContent('desc', '文本示例')}
                         />
@@ -191,7 +191,7 @@ export default function Main() {
                         <ContentEditable
                             id="tip"
                             onChange={handleEditable}
-                            className="text-gray-500"
+                            className="text-gray-600"
                             tagName="p"
                             disabled={!options.editMode}
                             html={getContent('tip', '支付宝 / 微信 扫码付款')}
@@ -229,6 +229,7 @@ export default function Main() {
                             className="bg-gray-900 text-white ml-3 p-2.5 rounded-full shadow-md"
                             target="_blank"
                             href="https://github.com/alex3236/pay"
+                            aria-label="Get more infomation on Github"
                         >
                             <GithubIcon className="w-5 h-5" />
                         </a>
@@ -243,7 +244,7 @@ export default function Main() {
                             <div className="bg-white rounded-lg p-6 max-w-sm w-full max-h-screen md:max-h-[90%] overflow-auto">
                                 <h3 className="text-lg font-semibold mb-2">设置</h3>
 
-                                <div className="w-full mb-4 inline-flex items-center">
+                                <label className="w-full mb-4 inline-flex items-center">
                                     <span>标题</span>
                                     <input
                                         type="text"
@@ -261,7 +262,7 @@ export default function Main() {
                                         className="h-6 w-72 text-center ml-2 border-[1px] border-black
                                         focus:outline-0 p-1.5 rounded-lg appearance-none"
                                     />
-                                </div>
+                                </label>
 
                                 <label className="w-full my-1 inline-flex items-center cursor-pointer">
                                     <input
