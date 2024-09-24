@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
-
 import {
     decodeAvatarSrc,
     encodeAvatarSrc,
@@ -18,6 +17,7 @@ import { GithubIcon, Spinner } from '@/app/components/icons';
 import FileSaver from 'file-saver';
 import DomToImage from 'dom-to-image-more';
 import Image from 'next/image';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const DynamicQRCode = dynamic(() => import('@/app/components/qrcode'), {
     ssr: false
@@ -82,6 +82,7 @@ export default function Main() {
 
     return (
         <>
+            <SpeedInsights />
             <div
                 ref={mainContainer}
                 className="select-none flex justify-center items-center

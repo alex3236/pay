@@ -14,6 +14,7 @@
     "@loskir/styled-qr-code-node": "^1.5.2",
     "@paulmillr/qr": "^0.2.0",
     "@solana/qr-code-styling": "^1.6.0",
+    "@vercel/speed-insights": "^1.0.12",
     "dom-to-image-more": "^3.4.5",
     "fast-deep-equal": "^3.1.3",
     "fast-equals": "^5.0.1",
