@@ -37,10 +37,12 @@ export default function Main() {
     const [options, setOptions] = useStorage<Options>('options', {}, { hideButton: true });
     const [contents, setContents] = useStorage<Serializable>('contents', {});
     const [mounted, setMounted] = useState<boolean>(false);
+
     const mainContainer = useRef<HTMLDivElement>(null);
     const loadingScreen = useRef<HTMLDivElement>(null);
     const buttonGroup = useRef<HTMLDivElement>(null);
     const offlineAlert = useRef<HTMLButtonElement>(null);
+    const avatarImage = useRef<HTMLImageElement>(null);
 
     const toggleOption = (opt: string) => {
         setOptions({ ...options, [opt]: !(options[opt] === true) });
@@ -70,7 +72,7 @@ export default function Main() {
                 document.title = contents.title;
             }
         }
-    }, [mounted]);
+    }, [contents.title, mounted]);
 
     return (
         <>
@@ -117,9 +119,10 @@ export default function Main() {
                 >
                     <Spinner />
                 </div>
-                <div className="bg-white items-center flex flex-col opacity-85 rounded-[1.2rem] py-12 mx-10 my-12 max-w-80 break-all">
+                <div className="bg-white items-center flex flex-col opacity-85 rounded-[1.2rem] pt-12 pb-5 mx-10 my-12 max-w-80 break-all">
                     <div className="flex justify-center">
                         <Image
+                            ref={avatarImage}
                             width={320}
                             height={320}
                             draggable={false}
@@ -130,6 +133,7 @@ export default function Main() {
                                 const target = e.currentTarget;
                                 const file = await getImageInput();
                                 if (file) {
+                                    target.srcset = '';
                                     target.src = URL.createObjectURL(file);
                                     toast.warning('临时头像已更新（不保存）');
                                 }
@@ -158,12 +162,12 @@ export default function Main() {
                         />
                     </div>
 
-                    <div className="text-center mt-4">
+                    <div className="text-center mt-4 w-full">
                         <ContentEditable
                             id="name"
                             onChange={handleEditable}
                             tagName="h2"
-                            className="text-black text-2xl font-semibold mb-1 mx-6"
+                            className="text-black text-2xl font-semibold pb-1 px-6"
                             disabled={!options.editMode}
                             html={getContent('name', '文本示例')}
                         />
@@ -171,7 +175,7 @@ export default function Main() {
                             id="desc"
                             onChange={handleEditable}
                             tagName="p"
-                            className="text-gray-600 text-md mx-4"
+                            className="text-gray-600 text-md px-4"
                             disabled={!options.editMode}
                             html={getContent('desc', '文本示例')}
                         />
@@ -393,6 +397,9 @@ export default function Main() {
                                         mainContainer.current.style.width = 'fit-content';
                                         mainContainer.current.style.height = 'fit-content';
                                         mainContainer.current.style.borderRadius = '1.2rem';
+                                        if (avatarImage.current)
+                                            // prevent wrong image rendering in dom-to-image
+                                            avatarImage.current.srcset = '';
                                         try {
                                             const image = await DomToImage.toBlob(
                                                 mainContainer.current,
