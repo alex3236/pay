@@ -1,7 +1,5 @@
 # Pay Next
 
-[![Vercel](https://vercelbadge.vercel.app/api/alex3236/pay)](https://vercel.com/alex3236/pay) 
-
 一个简单的收款码展示页。
 
 >[!CAUTION]
