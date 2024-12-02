@@ -197,7 +197,11 @@ export default function Home(props: { url?: string, tip?: string }) {
                                 editmode={`${options.editMode}`}
                                 childratio={`${options.dualCode ? options.childRatio || 0.45 : '0'}`}
                                 className="w-full h-full"
-                                url={props.url}
+                                url={
+                                    props.url == '/' && typeof window !== "undefined" ?
+                                        window.location.href :
+                                        props.url
+                                }
                             />
                         </Suspense>
                     </div>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server'
 import { getEnv } from './app/components/utils'
 
-const platforms = getEnv('platforms', {});
+const platforms = getEnv('platforms', undefined);
 
 
 export const config = {
@@ -9,8 +9,6 @@ export const config = {
 }
 
 export default function middleware(req: NextRequest) {
-  
-
   const { ua } = userAgent(req)
   var platform;
   var id;
@@ -29,6 +27,10 @@ export default function middleware(req: NextRequest) {
 
   if (id !== undefined) {
     return NextResponse.rewrite(new URL(`viewport/${id}`, req.url))
+  }
+
+  if (platforms !== undefined) {
+    return NextResponse.rewrite(new URL('viewport/unknown', req.url))
   }
 
   return NextResponse.next();
