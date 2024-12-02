@@ -17,7 +17,6 @@ import { GithubIcon, Spinner } from '@/app/components/icons';
 import FileSaver from 'file-saver';
 import DomToImage from 'dom-to-image-more';
 import Image from 'next/image';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const DynamicQRCode = dynamic(() => import('@/app/components/qrcode'), {
     ssr: false
@@ -85,7 +84,6 @@ export default function Home(props: { url?: string, tip?: string }) {
 
     return (
         <>
-            <SpeedInsights />
             <div
                 ref={mainContainer}
                 className="select-none flex justify-center items-center
