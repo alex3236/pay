@@ -85,7 +85,7 @@ export default function Home(props: { url?: string, tip?: string }) {
 
     return (
         <>
-            {/* <SpeedInsights /> */}
+            <SpeedInsights />
             <div
                 ref={mainContainer}
                 className="select-none flex justify-center items-center
