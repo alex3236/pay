@@ -85,7 +85,7 @@ export default function Home(props: { url?: string, tip?: string }) {
 
     return (
         <>
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
             <div
                 ref={mainContainer}
                 className="select-none flex justify-center items-center
@@ -411,9 +411,9 @@ export default function Home(props: { url?: string, tip?: string }) {
                                         mainContainer.current.style.width = 'fit-content';
                                         mainContainer.current.style.height = 'fit-content';
                                         mainContainer.current.style.borderRadius = '1.2rem';
-                                        if (avatarImage.current)
-                                            // prevent wrong image rendering in dom-to-image
-                                            avatarImage.current.srcset = '';
+                                        document.querySelectorAll('[srcset]').forEach(
+                                            e => e.removeAttribute("srcset")
+                                        );
                                         try {
                                             const image = await DomToImage.toBlob(
                                                 mainContainer.current,
