@@ -20,7 +20,7 @@ function parseBigImage(image: JimpInstance, scale: number): JimpInstance {
 }
 
 interface QRCodeProps extends HTMLAttributes<HTMLImageElement> {
-    url: string;
+    url?: string;
     editmode?: string;
     childratio?: string;
 }
@@ -45,7 +45,7 @@ class DynamicQRCode extends Component<QRCodeProps> {
         super(props);
 
         this.defaultVal = getEnv('qrCodeContent', {
-            main: 'Hello React World awa',
+            main: props.url ?? 'Hello React World awa',
             child: "Wow that's awesome"
         });
 
