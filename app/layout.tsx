@@ -4,14 +4,19 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 
 let title: string | undefined;
+let description: string | undefined;
 
 try {
-    if (process.env.app_contents) title = JSON.parse(process.env.app_contents).title;
-} catch {}
+    if (process.env.app_contents) {
+        const contents = JSON.parse(process.env.app_contents);
+        title = contents.title;
+        description = contents.desc;
+    }
+} catch { }
 
 export const metadata: Metadata = {
-    title: title || 'QR Code Generator',
-    description: 'A landing page for QR codes',
+    title: title ?? 'QR Code Generator',
+    description: description ?? 'A landing page for QR codes',
     authors: [
         {
             name: 'Alex3236',

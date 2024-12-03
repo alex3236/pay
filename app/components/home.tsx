@@ -255,6 +255,13 @@ export default function Home(props: { url?: string, tip?: string }) {
 						</a>
 					</div>
 
+					<div
+						// ref={buttonGroup}
+						className="fixed bottom-4 left-4 justify-center items-center flex text-white"
+					>
+						<p className='drop-shadow-sm deop-shadow-black'>闽 ICP 备 2021000000 号</p>
+					</div>
+
 					{/* Modal */}
 					{isModalOpen && (
 						<div
@@ -275,6 +282,25 @@ export default function Home(props: { url?: string, tip?: string }) {
 												setContents({
 													...contents,
 													title: e.currentTarget.value
+												});
+											}
+										}}
+										required
+										className="h-6 w-72 text-center ml-2 border-[1px] border-black
+                                        focus:outline-0 p-1.5 rounded-lg appearance-none dark:bg-slate-800"
+									/>
+								</label>
+
+								<label className="w-full mb-4 inline-flex items-center">
+									<span>简介</span>
+									<input
+										type="text"
+										defaultValue={document.head.querySelector("[name~=description][content]")?.getAttribute('content') ?? 'unknown'}
+										onChange={e => {
+											if (e.currentTarget.value.length > 0) {
+												setContents({
+													...contents,
+													desc: e.currentTarget.value
 												});
 											}
 										}}
