@@ -204,7 +204,7 @@ class DynamicQRCode extends Component<QRCodeProps> {
         const { ...props } = this.props;
 
         return (
-            <div className="m-5 relative">
+            <div className="m-5 relative dark:invert-[0.8]">
                 <Image
                     width={250}
                     height={250}
