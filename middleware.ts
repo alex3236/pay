@@ -14,7 +14,7 @@ export default function middleware(req: NextRequest) {
   var id;
 
   for (const i in platforms) {
-    if (ua.includes(platforms[i].match)) {
+    if (new RegExp(platforms[i].match).test(ua)) {
       platform = platforms[i];
       id = i;
       break;
@@ -22,6 +22,7 @@ export default function middleware(req: NextRequest) {
   }
 
   if (platform?.redirect !== undefined) {
+    NextResponse.rewrite
     return NextResponse.redirect(platform.redirect, 301)
   }
 

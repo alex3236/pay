@@ -20,6 +20,19 @@
 - 一键导出 `.env` 文件，二维码一键下载
 - 也支持传统模式，识别 UA 展示相应二维码/跳转页面
 
+## 🛠️ 开始
+
+### 部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falex3236%2Fpay&demo-title=Pay%20Site&demo-description=A%20simple%20payment%20code%20display%20page.&demo-url=https%3A%2F%2Fpay.alex3236.top%2F)
+
+### 配置
+
+1. 进入编辑模式，编辑内容（右键编辑 URL 方可保存）
+2. 下载配置文件（`saved.env`），导入为环境变量
+3. 如有需要，[配置 UA 识别功能](doc/user-agent.md)
+4. 修改环境变量后，可能需要重新部署（Redeploy）
+
 ## 🌟 支持我
 
 制作不易，如果喜欢请给个星星，~~或扫码支持我\~~~
