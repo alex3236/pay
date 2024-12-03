@@ -33,3 +33,9 @@ body {
         margin: 0;
     }
 }
+
+@layer components {
+    .hue {
+        filter: invert(.35) sepia(1) hue-rotate(176deg);
+    }
+}
