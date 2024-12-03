@@ -255,12 +255,13 @@ export default function Home(props: { url?: string, tip?: string }) {
 						</a>
 					</div>
 
-					<div
-						// ref={buttonGroup}
-						className="fixed bottom-4 left-4 justify-center items-center flex text-white"
-					>
-						<p className='drop-shadow-sm deop-shadow-black'>闽 ICP 备 2021000000 号</p>
-					</div>
+					{contents.icp?.url !== undefined && (
+						<div
+							className="fixed bottom-4 left-4 justify-center items-center flex text-white bg-gray-700 bg-opacity-55"
+						>
+							<a href={contents.icp.url ?? '#'} className='drop-shadow-sm deop-shadow-black mx-2 my-1'>{contents.icp.code ?? ''}</a>
+						</div>
+					)}
 
 					{/* Modal */}
 					{isModalOpen && (
