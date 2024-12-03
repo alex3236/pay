@@ -32,8 +32,36 @@
 
 1. 进入编辑模式，编辑内容（右键编辑 URL 方可保存）
 2. 下载配置文件（`saved.env`），导入为环境变量
-3. 如有需要，[配置 UA 识别功能](doc/user-agent.md)
-4. 修改环境变量后，可能需要重新部署（Redeploy）
+3. 修改环境变量后，可能需要重新部署（Redeploy）
+
+### UA 识别功能
+
+按照以下格式填写 `app_platforms` 环境变量
+
+```json5
+{
+    "baidu": {
+        "match": "Baidu/[0-9\.]+", // 匹配 User-Agent（正则）
+        "redirect": "https://baidu.com/" // 直接跳转
+    },
+    "unipay": {
+        "match": "Unipay",
+        "url": "https://example.org/", // 显示二维码，可长按识别
+        "tip": "长按识别二维码支付" // 下方提示
+    }
+}
+```
+
+### 显示 ICP 备案
+
+按照以下格式编辑 `app_contents` 环境变量
+
+```json
+"icp": {
+    "code": "闽ICP备00000000号",
+    "url": "https://example.org/"
+}
+```
 
 ## 🌟 支持我
 

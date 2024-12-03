@@ -257,6 +257,7 @@ export default function Home(props: { url?: string, tip?: string }) {
 
 					{contents.icp?.url !== undefined && (
 						<div
+							id='icp'
 							className="fixed bottom-4 left-4 justify-center items-center flex text-white bg-gray-700 bg-opacity-55"
 						>
 							<a href={contents.icp.url ?? '#'} className='drop-shadow-sm deop-shadow-black mx-2 my-1'>{contents.icp.code ?? ''}</a>
@@ -457,7 +458,7 @@ export default function Home(props: { url?: string, tip?: string }) {
 													scale: 1.5,
 													copyDefaultStyles: false,
 													filter: (node: Element) => {
-														return node.id !== 'loading-screen';
+														return !['loading-screen', 'icp'].includes(node.id);
 													}
 												}
 											);
