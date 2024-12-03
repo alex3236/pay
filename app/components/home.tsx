@@ -300,7 +300,7 @@ export default function Home(props: { url?: string, tip?: string }) {
 											if (e.currentTarget.value.length > 0) {
 												setContents({
 													...contents,
-													desc: e.currentTarget.value
+													meta: e.currentTarget.value
 												});
 											}
 										}}

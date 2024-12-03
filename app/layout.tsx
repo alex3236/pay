@@ -10,7 +10,7 @@ try {
     if (process.env.app_contents) {
         const contents = JSON.parse(process.env.app_contents);
         title = contents.title;
-        description = contents.desc;
+        description = contents.meta;
     }
 } catch { }
 
