@@ -226,6 +226,7 @@ class DynamicQRCode extends Component<QRCodeProps> {
                     src={qrData.child || '/blank.gif'}
                     alt={data.url || 'Loading QR code'}
                     className={'absolute bottom-0 right-0'}
+                    loading='eager'
                     style={{
                         width: (this.state.childRatio ?? 0) * 100 + '%',
                         height: (this.state.childRatio ?? 0) * 100 + '%',

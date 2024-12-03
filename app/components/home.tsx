@@ -409,8 +409,11 @@ export default function Home(props: { url?: string, tip?: string }) {
                                         mainContainer.current.style.width = 'fit-content';
                                         mainContainer.current.style.height = 'fit-content';
                                         mainContainer.current.style.borderRadius = '1.2rem';
-                                        document.querySelectorAll('[srcset]').forEach(
-                                            e => e.removeAttribute("srcset")
+                                        document.querySelectorAll('[srcset], [imagesrcset]').forEach(
+                                            e => {
+                                                e.removeAttribute("srcset");
+                                                e.removeAttribute("imagesrcset");
+                                            }
                                         );
                                         try {
                                             const image = await DomToImage.toBlob(
