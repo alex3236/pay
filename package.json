@@ -2,7 +2,7 @@
   "name": "pay",
   "author": "alex3236",
   "description": "A landing page for QR codes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
