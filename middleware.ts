@@ -22,8 +22,7 @@ export default function middleware(req: NextRequest) {
   }
 
   if (platform?.redirect !== undefined) {
-    NextResponse.rewrite
-    return NextResponse.redirect(platform.redirect, 303)
+    return NextResponse.rewrite(new URL(`redirect/${id}`, req.url))
   }
 
   if (id !== undefined) {
