@@ -13,30 +13,36 @@
 
 微信开通商家码后，可直接跳转页面，因此本项目也支持 UA 识别功能。
 
-这是我第一个真正意义上的 React (Next.js) 项目。缺陷较多，还请谅解。
+这是我第一个真正意义上的 React (Next.js) 项目。结构混乱，缺陷较多，还请谅解。
 
 ## ✨ 特性
+
+更臃肿的体积换来了更强大的功能。
 
 - 字母码，用户可自定义子母比例
 - 用户可随意编辑页面，包括头像和背景
 - 一键导出 `.env` 文件，二维码一键下载
 - 也支持传统模式，识别 UA 展示相应二维码/跳转页面
+- 支持 ICP 展示
 
 ## 🛠️ 开始
 
 ### 部署
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falex3236%2Fpay&demo-title=Pay%20Site&demo-description=A%20simple%20payment%20code%20display%20page.&demo-url=https%3A%2F%2Fpay.alex3236.top%2F)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falex3236%2Fpay&demo-title=Pay%20Site&demo-description=A%20simple%20payment%20code%20landing%20page.&demo-url=https%3A%2F%2Fpay.alex3236.top%2F)
 
 ### 配置
 
-1. 进入编辑模式，编辑内容（右键编辑 URL 方可保存）
-2. 下载配置文件（`saved.env`），导入为环境变量
-3. 修改环境变量后，可能需要重新部署（Redeploy）
+1. 进入设置，调整相关选项
+2. 进入编辑模式，编辑页面内容（图片只有右键编辑 URL 方可保存）
+3. 下载配置文件（`saved.env`），导入为环境变量
+4. 修改环境变量后，可能需要重新部署（Redeploy）
 
 ### UA 识别功能
 
-按照以下格式填写 `app_platforms` 环境变量
+可在 `已部署站点 - 设置 - 前往更多设置` 中快速生成
+
+手动配置：按照以下格式填写 `app_platforms` 环境变量
 
 ```json5
 {
@@ -54,7 +60,9 @@
 
 ### 显示 ICP 备案
 
-按照以下格式编辑 `app_contents` 环境变量
+可在 `已部署站点 - 设置 - 前往更多设置` 中快速生成
+
+手动配置：按照以下格式编辑 `app_contents` 环境变量
 
 ```json
 "icp": {
