@@ -73,8 +73,9 @@ export default function Home(props: { url?: string; tip?: string }) {
       !loadingScreen.current ||
       !bg ||
       loadingScreen.current.style.display !== 'none'
-    )
+    ) {
       return;
+    }
 
     const reset = () => {
       if (
@@ -153,7 +154,7 @@ export default function Home(props: { url?: string; tip?: string }) {
         className="select-none flex justify-center items-center h-screen"
       >
         <Background contents={contents} options={options} setContents={setContents} />
-        <LoadingScreen />
+        <LoadingScreen ref={loadingScreen} />
         <div className="bg-white dark:bg-slate-800 items-center flex flex-col opacity-85 rounded-[1.2rem] pt-12 pb-5 mx-10 my-12 max-w-80 break-all">
           <div className="flex justify-center">
             <Avartar

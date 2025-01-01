@@ -8,7 +8,7 @@ interface SettingsModalProps {
   options: Serializable;
   setOptions: (arg0: { childRatio: number; }) => void;
   toggleOption: (arg0: string) => void;
-  saveScreenshot: () => void;
+  saveScreenshot: () => Promise<void>;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({ contents, setContents, setIsModalOpen, options, setOptions, toggleOption, saveScreenshot }) => (
@@ -165,9 +165,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ contents, setContents, se
       <button
         className="w-full bg-green-700 text-white py-2 rounded-lg my-2 hover:bg-green-800"
         onClick={
-          () => {
+          async () => {
             setIsModalOpen(false);
-            saveScreenshot();
+            await saveScreenshot();
           }
         }
       >
