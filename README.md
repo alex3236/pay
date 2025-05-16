@@ -29,7 +29,16 @@
 
 ### 部署
 
+#### 通过 Vercel 一键部署
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falex3236%2Fpay&demo-title=Pay%20Site&demo-description=A%20simple%20payment%20code%20landing%20page.&demo-url=https%3A%2F%2Fpay.alex3236.top%2F)
+
+#### 本地开发
+
+```bash
+$ pnpm install
+$ pnpm run dev
+```
 
 ### 配置
 
