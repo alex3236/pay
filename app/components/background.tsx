@@ -10,7 +10,7 @@ const Background: React.FC<{
 }> = ({ contents, options, setContents }) => (
   <div
     id="background"
-    className="absolute h-fill w-fill bg-gray-300 dark:bg-slate-600
+    className="absolute h-full w-full bg-gray-300 dark:bg-slate-600
 bg-cover bg-local bg-center bg-no-repeat dark:brightness-75"
     style={{
       backgroundImage: contents.background || ''
