@@ -4,7 +4,7 @@ import { useState } from 'react';
 import FileSaver from 'file-saver';
 
 const saveAsFile = (str: string) => {
-  FileSaver.saveAs(new Blob([str], { type: 'text/plain' }), 'saved.env');
+  FileSaver.saveAs(new Blob([str], { type: 'text/plain' }), Date.now() + '.env');
 };
 
 const EnvGenPage = () => {
