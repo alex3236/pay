@@ -71,31 +71,36 @@ const EnvGenPage = () => {
   };
 
   return (
-    <div className="p-4 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center">.env 生成器</h1>
-      <p className="mb-4 text-center text-gray-600">
+    <div className="p-4 max-w-3xl mx-auto bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+      <h1 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100">
+        .env 生成器
+      </h1>
+      <p className="mb-4 text-center text-gray-600 dark:text-gray-300">
         如需在已部署站点使用编辑模式，请先将此页面生成的 .env 导入
         <br />
         避免编辑模式生成内容覆盖下述字段
       </p>
       {platforms.map((platform, index) => (
-        <div key={index} className="mb-4 p-4 border rounded-lg shadow-sm bg-white">
+        <div
+          key={index}
+          className="mb-4 p-4 border rounded-lg shadow-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 transition-colors"
+        >
           <input
             type="text"
             placeholder="名称"
             value={platform.name}
             onChange={e => handlePlatformChange(index, 'name', e.target.value)}
-            className="block w-full mb-2 p-2 border rounded-md"
+            className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
           />
           <input
             type="text"
             placeholder="User-Agent 匹配正则"
             value={platform.match}
             onChange={e => handlePlatformChange(index, 'match', e.target.value)}
-            className="block w-full mb-2 p-2 border rounded-md"
+            className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
           />
           <div className="mb-2 flex items-center space-x-4">
-            <label className="flex items-center">
+            <label className="flex items-center text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name={`option-${index}`}
@@ -108,7 +113,7 @@ const EnvGenPage = () => {
               />
               重定向
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center text-gray-900 dark:text-gray-100">
               <input
                 type="radio"
                 name={`option-${index}`}
@@ -128,7 +133,7 @@ const EnvGenPage = () => {
               placeholder="重定向"
               value={platform.redirect}
               onChange={e => handlePlatformChange(index, 'redirect', e.target.value)}
-              className="block w-full mb-2 p-2 border rounded-md"
+              className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
             />
           )}
           {platform.option === 'showCode' && (
@@ -138,20 +143,20 @@ const EnvGenPage = () => {
                 placeholder="URL"
                 value={platform.url}
                 onChange={e => handlePlatformChange(index, 'url', e.target.value)}
-                className="block w-full mb-2 p-2 border rounded-md"
+                className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
               />
               <input
                 type="text"
                 placeholder="提示"
                 value={platform.tip}
                 onChange={e => handlePlatformChange(index, 'tip', e.target.value)}
-                className="block w-full mb-2 p-2 border rounded-md"
+                className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
               />
             </>
           )}
           <button
             onClick={() => removePlatform(index)}
-            className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+            className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 transition-colors"
           >
             移除
           </button>
@@ -159,38 +164,38 @@ const EnvGenPage = () => {
       ))}
       <button
         onClick={addPlatform}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-600"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors"
       >
         添加平台
       </button>
-      <div className="mb-4 p-4 border rounded-lg shadow-sm bg-white">
+      <div className="mb-4 p-4 border rounded-lg shadow-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 transition-colors">
         <input
           type="text"
           placeholder="ICP 编号"
           value={icpCode}
           onChange={e => setIcpCode(e.target.value)}
-          className="block w-full mb-2 p-2 border rounded-md"
+          className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
         />
         <input
           type="text"
           placeholder="跳转 URL"
           value={icpUrl}
           onChange={e => setIcpUrl(e.target.value)}
-          className="block w-full mb-2 p-2 border rounded-md"
+          className="block w-full mb-2 p-2 border rounded-md bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
         />
       </div>
       <button
         onClick={generateEnv}
-        className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+        className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-800 transition-colors"
       >
         生成 .env
       </button>
       {envContent && (
         <>
-          <pre className="mt-4 p-4 border rounded-lg bg-gray-100">{envContent}</pre>
+          <pre className="mt-4 p-4 border rounded-lg bg-gray-100 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 transition-colors">{envContent}</pre>
           <button
             onClick={() => saveAsFile(envContent)}
-            className="bg-yellow-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-yellow-600"
+            className="bg-yellow-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-yellow-600 dark:bg-yellow-700 dark:hover:bg-yellow-800 transition-colors"
           >
             下载 .env
           </button>
